@@ -4,7 +4,7 @@
 
 SERQET asks whether a frontier agent can finish a legitimate hospital workflow while consent, the patient, delegated scope, human approval, and lower-trust chart notes stay authorized at every protected step. The hospital is fictional. The records are a synthetic FHIR R4 subset. Nothing here is a medical device, a HIPAA determination, or a clinical decision aid.
 
-Start with [docs/JUDGES_START_HERE.md](docs/JUDGES_START_HERE.md) and the measured write-up [docs/FRONTIER_MODEL_FINDINGS.md](docs/FRONTIER_MODEL_FINDINGS.md). The live dashboard is https://serqet-liard.vercel.app. The public video URL is **PENDING**. The walkthrough has not been uploaded.
+Start with [docs/JUDGES_START_HERE.md](docs/JUDGES_START_HERE.md) and the measured write-up [docs/FRONTIER_MODEL_FINDINGS.md](docs/FRONTIER_MODEL_FINDINGS.md). The live dashboard is https://serqet-liard.vercel.app. The walkthrough is https://github.com/ybedoyab/serqet/releases/download/walkthrough-2026-11-04/serqet-walkthrough.mp4 (4:24, public, not inside the ZIP).
 
 ## The finding
 
@@ -71,7 +71,7 @@ Raw trials are under `artifacts/measured/`. Each accepted trial has `metadata.js
 
 ## Dashboard and video
 
-Production: https://serqet-liard.vercel.app. Locally, from `apps/web`: `npm ci`, then `npm run dev`. The video file, when produced, stays outside the submission ZIP. Its public URL stays **PENDING** until an upload is verified.
+Production: https://serqet-liard.vercel.app. Locally, from `apps/web`: `npm ci`, then `npm run dev`. The walkthrough MP4 is not in the submission ZIP. Public file: https://github.com/ybedoyab/serqet/releases/download/walkthrough-2026-11-04/serqet-walkthrough.mp4.
 
 ## Limitations
 

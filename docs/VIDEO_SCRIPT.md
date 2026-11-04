@@ -1,6 +1,6 @@
 # Video
 
-Target: 4:15–4:45, 16:9, at least 1080p, English narration, no music required. The public URL is **PENDING** until an upload is verified to open without a login. Do not invent a URL. Do not put the file in the submission ZIP.
+Target: 4:15–4:45, 16:9, at least 1080p, English narration, no music required. The public file is https://github.com/ybedoyab/serqet/releases/download/walkthrough-2026-11-04/serqet-walkthrough.mp4. Do not put the file in the submission ZIP.
 
 The narration below is the spoken script. Every trial claim matches `docs/FRONTIER_MODEL_FINDINGS.md` and the stored events. Screen recordings must come from the dashboard and from a real `serqet audit` run. Do not substitute a simulated timeline for a measured one, and do not type fake terminal output.
 
@@ -37,10 +37,10 @@ SERQET measures authorization decisions throughout an agent workflow, not just w
 A local MP4 was produced on 4 November 2026:
 
 - Path, outside the repository and outside the submission ZIP: `d:\Code, 3D, Audio\Coding\GitHub\serqet-video\serqet-walkthrough.mp4`
+- Public URL, checked with an unauthenticated request that returned HTTP 200 and the file length: https://github.com/ybedoyab/serqet/releases/download/walkthrough-2026-11-04/serqet-walkthrough.mp4
 - Duration 263.856 seconds (4:24)
 - Video: H.264, 1920x1080, 8 fps slideshow of real dashboard screenshots
 - Audio: AAC, 24000 Hz, mono, synthesized with edge-tts voice `en-US-AriaNeural` from `narration.txt` in that same folder
 - Burned-in subtitles are the narration lines
-- Public URL: **PENDING**. No upload has been verified to open without a login
 
-The frames are screenshots of the local dashboard and one card that reprints the real `serqet audit` stdout. They are not fabricated model traces. The public URL must stay PENDING in the README until an upload is checked.
+The frames are screenshots of the local dashboard and one card that reprints the real `serqet audit` stdout. They are not fabricated model traces.
