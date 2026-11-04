@@ -24,8 +24,8 @@
 
 ## Gate 4 — dashboard
 
-- Next.js app in `apps/web`. Local Playwright: 5 passed, including desktop task navigation and a 390px viewport.
-- Models page states `NOT_MEASURED`. Scenario timelines are labeled SIMULATED DEMO.
+- Next.js app in `apps/web`. The first local Playwright run was 5 tests, before measured traces were on the page.
+- At that time the models page stated `NOT_MEASURED` and scenario timelines were only SIMULATED DEMO. After the 4 November measurement, model traces are labeled MEASURED MODEL RESULT and the oracle timeline remains SIMULATED DEMO. Current test counts are in `docs/QA_REPORT.md`.
 
 ## Gate 5 — quality
 
@@ -50,7 +50,7 @@
 
 - Dataset `serqet-2026-11-04.2`. Revocation on the two negative twins is applied before the commit decision. Control pass counts are unchanged: oracle 10/10, always-refuse 5/10, reckless 5/10, cached 8/10.
 - The multi-turn runner, provider routing, budget check, and measured-record validator are in the package. Mocked tests cover them.
-- No paid or free model call was authorized. Status remains `NOT_MEASURED`. API cost incurred: 0.
+- When this section was written, no paid call had been authorized and the status was `NOT_MEASURED`. That was the pre-measurement state. The later run is Gate 3 above: 31 accepted trials, provider-reported trial cost USD 0.547108. No further paid call is part of the submission finalization.
 - See `docs/VALIDITY_AUDIT.md` and `docs/EVAL_RUNBOOK.md`.
 
 ## Gate 8 — package

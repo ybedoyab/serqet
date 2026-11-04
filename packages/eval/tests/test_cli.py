@@ -5,6 +5,10 @@ from __future__ import annotations
 from serqet.cli import main
 
 
+def test_audit_accepts_the_frozen_measurements() -> None:
+    assert main(["audit"]) == 0
+
+
 def test_dry_run_and_zero_cap_do_not_call_network(monkeypatch) -> None:
     def boom(*_args, **_kwargs):
         raise AssertionError("network")

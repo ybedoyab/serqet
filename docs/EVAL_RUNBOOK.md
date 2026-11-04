@@ -11,6 +11,14 @@ uv run --project packages/eval serqet verify --offline
 
 Exit code `0` means the four controls still separate. Exit code `1` means a task or the grader regressed. Fix that before trusting any model number. `verify --offline` refreshes controls and simulated demos. It keeps model rows only when the files under `artifacts/measured` pass integrity checks. It does not turn a `kind: measured` flag into a result.
 
+To check the published trials without rewriting them and without an API key:
+
+```bash
+uv run --project packages/eval serqet audit
+```
+
+`audit` must report 31 accepted trials and cost USD 0.547108. It does not call a provider.
+
 ## Dry run
 
 ```bash

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 from typing import Any
 
 from serqet.budget import BudgetError, BudgetLedger
@@ -388,3 +389,28 @@ def test_ledger_refuses_a_ceiling_above_five_dollars(tmp_path) -> None:
         assert "authorized" in str(exc)
     else:
         raise AssertionError("ceiling above 5 USD was accepted")
+
+
+def test_changed_score_and_model_id_are_rejected(tmp_path) -> None:
+    repo = Path(__file__).resolve().parents[3]
+    source = next((repo / "artifacts" / "measured").rglob("metadata.json")).parent
+    destination = tmp_path / "trial"
+    destination.mkdir()
+    for name in ("metadata.json", "transcript.json", "events.json", "score.json", "responses.json"):
+        (destination / name).write_text((source / name).read_text(encoding="utf-8"), encoding="utf-8")
+    score_path = destination / "score.json"
+    score = json.loads(score_path.read_text(encoding="utf-8"))
+    score["task_pass"] = not score["task_pass"]
+    score_path.write_text(json.dumps(score), encoding="utf-8")
+    ok, reason = validate_trial(destination)
+    assert not ok
+    assert "score" in reason
+    score["task_pass"] = not score["task_pass"]
+    score_path.write_text(json.dumps(score), encoding="utf-8")
+    metadata_path = destination / "metadata.json"
+    metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+    metadata["model"] = "replaced/model"
+    metadata_path.write_text(json.dumps(metadata), encoding="utf-8")
+    ok, reason = validate_trial(destination)
+    assert not ok
+    assert "model" in reason

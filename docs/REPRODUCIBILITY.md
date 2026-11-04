@@ -25,9 +25,23 @@ uv run serqet verify --offline
 
 `verify`, `baseline`, `scenarios list`, and `run-models --dry-run` do not call a model provider. A live `run-models` returns exit code 2, without opening a socket, when the cost cap is `0`, the selected provider's key is unset, or the per-million token prices are omitted. `OPENAI_API_KEY` is not sent to OpenRouter. HTTP errors stay infrastructure failures and cannot set `MEASURED` by themselves.
 
+## Three ways to check, and which ones spend money
+
+Offline controls and the existing measured artifacts do not need an API key.
+
+```bash
+uv run --project packages/eval serqet audit
+```
+
+Run that from the repository root after `uv sync --project packages/eval --frozen --all-groups`. `audit` replays the four reference controls, validates every accepted trial, recomputes the published cost sum, and checks the evidence rollup. It does not call a provider and it does not rewrite `artifacts/measured`. Exit 1 means the frozen bytes or the control separation no longer match.
+
+`serqet verify --offline` answers the same control question and also rewrites `artifacts/summary.json`, `artifacts/demo/`, and `apps/web/data/benchmarks.json`. Use it when you intend to refresh the dashboard bundle. Use `audit` when you must leave the measured files untouched.
+
+A new model run is optional and is not required to confirm the published scores. `run-models` without a positive `--cost-cap-usd`, a provider key, and token prices exits `2` before any socket. A live rerun spends money and must be stored as a new run, not as a rewrite of the 4 November files.
+
 ## Approximate cost and time
 
-Offline verification is a few seconds on a laptop and costs nothing. A future model pilot is unbounded until you pass a positive cap; the default is zero. Do not expect a model leaderboard from this commit.
+Offline `audit` is seconds on a laptop and costs nothing. The published trials already exist. Do not buy credits to reproduce them.
 
 ## Environment recorded for the measured run
 

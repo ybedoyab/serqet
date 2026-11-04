@@ -1,6 +1,6 @@
 # Validity audit
 
-Reviewed 4 November 2026 against dataset `serqet-2026-11-04.2`. This is an audit of the tasks and the grader. It is not a model result.
+The sections below through "Grader boundaries" are the pre-measurement audit of the tasks and the grader, written before the OpenRouter trials. They are kept as that chronology. The section "Measured trials, 4 November 2026" is the post-measurement check. The independent claim review is `docs/SCIENTIFIC_REVIEW.md`. Dataset `serqet-2026-11-04.2`.
 
 ## Revocation timing
 
@@ -44,6 +44,6 @@ The grader was not changed after the model traces arrived. A `read_resource` or 
 
 Resources stay on the R4 shapes already used: Consent status `active` or `inactive`, not R5 fields. Consent text does not enforce itself; the oracle does. AuditEvent and Provenance stay distinct. Ledgers are labeled non-FHIR. The local checker is not a conformance suite.
 
-## What this audit did not do
+## What the pre-measurement audit did not do
 
-No model was called. No score below was invented. The audit did not add tasks whose only purpose is to make a model fail.
+When the sections above were written, no model had been called and no model score had been invented. The audit did not add tasks whose only purpose is to make a model fail. That sentence is historical. The 31 trials now in `artifacts/measured/` are the later measurement, reviewed in `docs/SCIENTIFIC_REVIEW.md`. The original tasks, policy, and grader semantics were not rewritten to fit those traces.

@@ -1,38 +1,31 @@
 # QA report
 
-Updated as gates finish. Commands below were run on 4 November 2026 unless a later section says otherwise.
+This report replaces the foundation QA note. The commands below were run on 4 November 2026 against the finalization tree. Older counts in git history, including 13 pytest tests and a 96-file ZIP, describe earlier commits. They are not the current result.
 
 ## Python
 
 - `uv run --project packages/eval ruff check packages/eval` — pass
-- `uv run --project packages/eval mypy packages/eval/serqet` — pass, 15 files
-- `uv run --project packages/eval pytest` — 13 passed
-- `uv run --project packages/eval serqet verify --offline` — exit 0
+- `uv run --project packages/eval mypy packages/eval/serqet` — pass, 20 source files
+- `uv run --project packages/eval pytest -q` — 31 passed
+- `uv run --project packages/eval serqet audit` — exit 0
+  - accepted 31, rejected 0, task passes 19, cost USD 0.547108
+  - GPT-6 Sol shadow 11/14, enforced 0/1
+  - Claude Sonnet 5.5 shadow 8/14, enforced 0/2
+  - evidence rollup matched the frozen JSON bytes
+- `python scripts/check_secrets.py` — the only match is the local `.env`, which `.gitignore` excludes. Every other file in the tree had no credential prefix. `.env` is not part of the commit or the ZIP.
 
-Control matrix from that verify:
-
-- oracle_agent shadow 10/10, enforced 10/10
-- always_refuse shadow 5/10, enforced 5/10
-- reckless_completer shadow 5/10, enforced 5/10
-- cached_authority_agent shadow 8/10, enforced 8/10
-- measurement_status `NOT_MEASURED`
+`audit` does not call a provider and does not rewrite `artifacts/measured`.
 
 ## Web
 
-- `npm run typecheck` in `apps/web` — pass
-- `npm run lint` — pass, no ESLint warnings
-- `npm run build` — pass, Next.js 15.5.29, 20 static pages including all 10 scenario routes
-- `npm run test:e2e` — 5 passed. Covered the overview question, the not-measured banner, a scenario timeline labeled SIMULATED DEMO, the empty model state, a 390px viewport without horizontal overflow, and `/api/health`
+- `npm ci` in `apps/web` — completed from the lockfile
+- `npm run lint` — pass, no ESLint warnings or errors
+- `npm run typecheck` — pass
+- `npm run build` — pass, Next.js 15.5.29. Pages are server-rendered on demand so the CSP nonce can be stamped on script tags. `/icon.svg` stays static.
+- `npm run test:e2e` — 7 passed. Covered the measured overview, a simulated timeline and a measured timeline step, the model matrix, a 390px viewport, keyboard focus, a 768px viewport, and `/api/health`
 
-The first end-to-end run failed because a static `script-src 'self'` policy blocked Next.js inline bootstrap scripts and the hydrated page lost its headings. Middleware now sets a per-request nonce. The rerun passed.
+Before this pass, scenario pages were prerendered without a nonce while middleware sent a nonce CSP, so the timeline buttons did not run in a browser that enforces CSP. The root layout now reads the request nonce and the pages render dynamically. Playwright was rerun after that change.
 
-## Secret scan and ZIP
+## What this report does not include yet
 
-- `python scripts/check_secrets.py` — pass, no credential prefixes
-- `uv run --project packages/eval serqet package --output dist/serqet-micro1-submission.zip` — 96 files, 197624 bytes
-- The extracted tree ran `serqet verify --offline` and the controls still separated
-
-## GitHub and production
-
-- CI https://github.com/ybedoyab/serqet/actions/runs/41818242376 — python, web, and playwright passed. Pull request https://github.com/ybedoyab/serqet/pull/1 merged.
-- Production https://serqet-liard.vercel.app (`dpl_G8aVNkPhytVfBSkCcwXN8Dy563tn`, commit `0aac61daf9154a98cac218196f7a93d1d100a7a9`). The same Playwright file, pointed at that origin, passed 5 tests. Health returned that commit.
+The submission ZIP, the GitHub Actions run for this branch, and the production deployment are recorded in `docs/FINAL_SUBMISSION_AUDIT.md` after those steps finish. No new OpenRouter call was made for this QA pass.
