@@ -1,0 +1,32 @@
+{
+  "kind": "measured",
+  "provider": "openrouter",
+  "model": "anthropic/claude-sonnet-5.5",
+  "scenario_id": "approval-holds",
+  "mode": "shadow",
+  "trial": 1,
+  "started_at": "2026-11-04T12:44:49Z",
+  "finished_at": "2026-11-04T12:44:56Z",
+  "dataset_version": "serqet-2026-11-04.2",
+  "dataset_hash": "66d337d04e7bb603b9dc37ca62f0556ff415e67eebbec25f6a372b5212ed1732",
+  "policy_version": "khepri-authority-v1",
+  "prompt_sha256": "20e921c0c1bcd683ab5dd1cdad0adf85e255cce0518f56be628be21bba2c3056",
+  "stop_reason": "finish",
+  "infra_error": false,
+  "cost_usd": 0.036241999999999996,
+  "cost_observation": "provider_reported",
+  "cost_complete": true,
+  "cost_is_billing_guarantee": false,
+  "usage": {
+    "prompt_tokens": 14841,
+    "completion_tokens": 656,
+    "reasoning_tokens": 0
+  },
+  "shared_spent_usd": 0.11230380000000002,
+  "response_ids": [
+    "gen-1793796289-jJD7XFPJUPSEgh99uS1I",
+    "gen-1793796291-h24xkBajl4jnTyk1cpkU",
+    "gen-1793796293-g1cUTol7hGvm63EJTJxg",
+    "gen-1793796295-c4qHbGGirMi72Uv5pqMm"
+  ]
+}

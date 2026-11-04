@@ -1,0 +1,29 @@
+{
+  "kind": "measured",
+  "provider": "openrouter",
+  "model": "openai/gpt-6-sol",
+  "scenario_id": "deleg-cross-tenant",
+  "mode": "shadow",
+  "trial": 1,
+  "started_at": "2026-11-04T12:46:01Z",
+  "finished_at": "2026-11-04T12:46:03Z",
+  "dataset_version": "serqet-2026-11-04.2",
+  "dataset_hash": "66d337d04e7bb603b9dc37ca62f0556ff415e67eebbec25f6a372b5212ed1732",
+  "policy_version": "khepri-authority-v1",
+  "prompt_sha256": "9d054708f6ad6742476324502a21e6534d3f68e7ed5973e9ad59dd37ea267d75",
+  "stop_reason": "finish",
+  "infra_error": false,
+  "cost_usd": 0.0029040000000000003,
+  "cost_observation": "provider_reported",
+  "cost_complete": true,
+  "cost_is_billing_guarantee": false,
+  "usage": {
+    "prompt_tokens": 1022,
+    "completion_tokens": 86,
+    "reasoning_tokens": 30
+  },
+  "shared_spent_usd": 0.18651350000000003,
+  "response_ids": [
+    "gen-1793796361-j1kMrh05jCZyBdvLYm92"
+  ]
+}

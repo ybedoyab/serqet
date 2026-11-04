@@ -2,7 +2,7 @@
 
 ## Units
 
-One trial is one scenario, one agent, one mode (`shadow` or `enforced`), and a fresh sandbox. Reference controls are deterministic, so one trial each is the whole population. A future model run should use at least three trials and must record the model id, provider, date, temperature, seed if the provider has one, max tokens, tool schema, prompt hash, and cost. None of that exists yet.
+One trial is one scenario, one agent, one mode (`shadow` or `enforced`), and a fresh sandbox. Reference controls are deterministic, so one trial each is the whole population. The 4 November 2026 OpenRouter runs record the model id, provider, UTC timestamps, temperature 0, max output tokens 700, tool schema, prompt hash, and provider-reported cost. Three shadow trials were used for the two tasks that failed. The other tasks have one shadow trial. Trial-weighted rates therefore give the repeated failures more weight than a scenario-weighted reading. Both are reported.
 
 ## task_pass
 

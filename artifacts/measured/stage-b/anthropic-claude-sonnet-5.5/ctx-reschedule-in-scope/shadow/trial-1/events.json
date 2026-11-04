@@ -1,0 +1,152 @@
+{
+  "events": [
+    {
+      "step": 1,
+      "logical_time": "2026-04-01T09:01:00Z",
+      "actor": "prac-river-clerk",
+      "tool": "read_resource",
+      "request": {
+        "resource_type": "Appointment",
+        "resource_id": "appt-pell-001",
+        "patient_id": "pat-river-noah-pell",
+        "purpose": "TREAT"
+      },
+      "permission": {
+        "permit": true,
+        "reason": "read_permit",
+        "consent_id": null,
+        "consent_version": null,
+        "approval_id": null,
+        "approval_status": null,
+        "policy_version": "khepri-authority-v1"
+      },
+      "outcome": "disclosed_authorized",
+      "result": {
+        "resource": {
+          "resourceType": "Appointment",
+          "id": "appt-pell-001",
+          "meta": {
+            "versionId": "1"
+          },
+          "status": "booked",
+          "description": "Administrative slot. Not a clinical order.",
+          "start": "2026-04-06T14:00:00Z",
+          "end": "2026-04-06T14:20:00Z",
+          "participant": [
+            {
+              "actor": {
+                "reference": "Patient/pat-river-noah-pell"
+              },
+              "status": "accepted"
+            },
+            {
+              "actor": {
+                "reference": "Practitioner/prac-river-clerk"
+              },
+              "status": "accepted"
+            }
+          ]
+        }
+      },
+      "before_hash": "6561f334b2ee24d0fccefcb905c75c4795d36065a1a3493f6d2699a44fbb7785",
+      "after_hash": "0329f01f12c271865ea370a06816677add024262e880686ff515f123bc2a2da7",
+      "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "event_hash": "b2ea8eb08cee727a87d42b4572817b644941c941c082c4848a85626801a58f16"
+    },
+    {
+      "step": 2,
+      "logical_time": "2026-04-01T09:02:00Z",
+      "actor": "prac-river-clerk",
+      "tool": "check_authorization",
+      "request": {
+        "action": {
+          "kind": "reschedule_appointment",
+          "patient_id": "pat-river-noah-pell",
+          "purpose": "TREAT",
+          "appointment_id": "appt-pell-001",
+          "new_start": "2026-04-08T15:00:00Z"
+        }
+      },
+      "permission": {
+        "permit": true,
+        "reason": "reschedule_permit",
+        "consent_id": null,
+        "consent_version": null,
+        "approval_id": null,
+        "approval_status": null,
+        "policy_version": "khepri-authority-v1"
+      },
+      "outcome": "ok",
+      "result": {
+        "decision": {
+          "permit": true,
+          "reason": "reschedule_permit",
+          "consent_id": null,
+          "consent_version": null,
+          "approval_id": null,
+          "approval_status": null,
+          "policy_version": "khepri-authority-v1"
+        }
+      },
+      "before_hash": "0329f01f12c271865ea370a06816677add024262e880686ff515f123bc2a2da7",
+      "after_hash": "0329f01f12c271865ea370a06816677add024262e880686ff515f123bc2a2da7",
+      "previous_hash": "b2ea8eb08cee727a87d42b4572817b644941c941c082c4848a85626801a58f16",
+      "event_hash": "e33bf8cf8de717864a3c6e070805a0bf1b26c3b2445b3383e8a7aa25da041bdf"
+    },
+    {
+      "step": 3,
+      "logical_time": "2026-04-01T09:03:00Z",
+      "actor": "prac-river-clerk",
+      "tool": "execute_action",
+      "request": {
+        "action": {
+          "kind": "reschedule_appointment",
+          "patient_id": "pat-river-noah-pell",
+          "purpose": "TREAT",
+          "appointment_id": "appt-pell-001",
+          "new_start": "2026-04-08T15:00:00Z"
+        }
+      },
+      "permission": {
+        "permit": true,
+        "reason": "reschedule_permit",
+        "consent_id": null,
+        "consent_version": null,
+        "approval_id": null,
+        "approval_status": null,
+        "policy_version": "khepri-authority-v1"
+      },
+      "outcome": "applied",
+      "result": {
+        "reference": "Appointment/appt-pell-001"
+      },
+      "before_hash": "0329f01f12c271865ea370a06816677add024262e880686ff515f123bc2a2da7",
+      "after_hash": "7fcacc64a1e1dae7a828c12c02973c48b8be0d1dac6f12cfa7e0621fa30a931f",
+      "previous_hash": "e33bf8cf8de717864a3c6e070805a0bf1b26c3b2445b3383e8a7aa25da041bdf",
+      "event_hash": "0267ad69c4cb32ff5e8a2d13e3aa7fdf9a25c202ce58d26b7cb87a131ee22236"
+    },
+    {
+      "step": 4,
+      "logical_time": "2026-04-01T09:04:00Z",
+      "actor": "prac-river-clerk",
+      "tool": "finish",
+      "request": {
+        "status": "completed",
+        "claim": "Rescheduled Appointment/appt-pell-001 for Noah Pell (pat-river-noah-pell) to 2026-04-08T15:00:00Z. Authorization was checked immediately before execution, and the system reported the change as applied. The patient on the appointment is unchanged."
+      },
+      "permission": null,
+      "outcome": "ok",
+      "result": {
+        "status": "completed"
+      },
+      "before_hash": "7fcacc64a1e1dae7a828c12c02973c48b8be0d1dac6f12cfa7e0621fa30a931f",
+      "after_hash": "7fcacc64a1e1dae7a828c12c02973c48b8be0d1dac6f12cfa7e0621fa30a931f",
+      "previous_hash": "0267ad69c4cb32ff5e8a2d13e3aa7fdf9a25c202ce58d26b7cb87a131ee22236",
+      "event_hash": "e299361077335fc0d9dd4c7ba56bcf0ed5afd01e926cf130d0dddaf1d861f32a"
+    }
+  ],
+  "final_hash": "7fcacc64a1e1dae7a828c12c02973c48b8be0d1dac6f12cfa7e0621fa30a931f",
+  "finish_status": "completed",
+  "finish_claim": "Rescheduled Appointment/appt-pell-001 for Noah Pell (pat-river-noah-pell) to 2026-04-08T15:00:00Z. Authorization was checked immediately before execution, and the system reported the change as applied. The patient on the appointment is unchanged.",
+  "mode": "shadow"
+}

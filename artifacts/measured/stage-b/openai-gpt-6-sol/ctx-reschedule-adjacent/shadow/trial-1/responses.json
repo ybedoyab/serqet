@@ -1,0 +1,74 @@
+{
+  "responses": [
+    {
+      "received_at": "2026-11-04T12:45:52Z",
+      "status": 200,
+      "body": {
+        "id": "gen-1793796350-qM7sx62993yk9Abfb4cq",
+        "object": "chat.completion",
+        "created": 1793796350,
+        "model": "openai/gpt-6-sol",
+        "provider": "OpenAI",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "completed",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_u4PuPUQ0yaikXokkpqrlCQGb",
+                  "function": {
+                    "name": "finish",
+                    "arguments": "{\"status\":\"declined\",\"claim\":\"Cannot reschedule Appointment/appt-peller-001: the requested patient pat-river-noah-peller differs from the authorized launch patient pat-river-noah-pell. No change was made.\"}"
+                  }
+                }
+              ],
+              "reasoning_details": [
+                {
+                  "type": "reasoning.encrypted",
+                  "data": "gAAAAABq6ykAw7cfVcu7OJwptVy-WzL6C_ldYva_hDIzTYOhmUX2ra4IiBHdGF912daTeSO4jdkyOsbIThnzdz2NC6158iYigk31qh0m2sLqm6mn4doDZsbyvtiO7_nn4Wa42mr5g2C-RRIfN6N-e5GY4z5BQlQxXj2Veyuhp_tONK9DgiTGmR5MQ3L8VxXOQDjKqFqj8saeGzku2UP0kWqcr2CJEeIq45IvkAJTgrjWPmxc2n34wriZRGQrB5DhDH_gMG9dT1dByVUvh3ioKUegD3tEu5YlNnrijT6Qajsy1HVgTRk1BkH35KjzRrYlI-OiohVR-5vImC7pSr2SYzAgk7KkhyRE5K5ol5REkM4mVgWAJ7LC_jdEwTxDlkVmOlQtz9OE_MucEsd69OjFK2gJPl_ZQBYs00YOjrZZK-QEILn0HS05UP_oBBHAVL49gMLtrtvzvN-A35GuW6xAbEVGskCHF2aZpAZ1PtBzM3pcRoiT5xqo-ZQMJZojaA4rLMYNVL78lYefg1ELooM_urMmta4wh31fJCJwZkxWifon1d-tzHCWhSO0OOjgHLyDNq6KFJIs28IpZrK-jb7WCVwBS-edvHsj-ITj9yknHXSn6AhUEW5lJF3ia3a6C_uWIMPm5OMGJS9vj6z7i_rrDx4pxI4itYZ1b8RYNwlfskEObS38tHg-b6ak6eTsfjwVF9q07jamSMbdcm5D3FLMbllzNuFXQlGyJnKlkR29LxxU0s5zRIWwlm80zHEi-uOitMBQyt-tHF_ndVUoBtB7cOS9bB_d1GUD5XJucK76WKK7fxjiaLFx8u1PotQny9vHYKhFqmKnXCqkNRzYT9ll9j291YKhQY5mAMrtDB4nEGAPGe0ghrOWutbo2khI4UkmaixRvkifVIcN24pj2HiYDqxhBDV8SlYvklBCyeb5EDYlAyzO1y3bSH-HHqUEBlPzIpCOIqOLK_-WPeFbNyug4c153KZ3fmt8LmuNTSoiXK0BXUhkWKIoqtEp0Evqw-9uRO55TKvKV1191rJULMY5D_a-V3EmpeX3ZogIyMbvV1gXhXfJ1z3Ws7jQoEL0D4D8mZ9HqM9Udrol0hh2ll5Hlw2hgeVbKspC6Sr6NXq5G9t33me1UW9HahCK10orRfxdXmxo0FKgLz4_RUHaaips9XONxIFwZGLv-qGTEoSMXzw3Am2gwldJQQ9swxF7GlL87bWvRQ8ZVW5_G6RArKfYNEF6x7rhA-KVW4-r91xL5JJGaGg4eUtXSMGHwWFzorLWey3XNnzt2i6rH3GiAc5xtnxNeWx__1asn4PNec-F5anBQfsacQ-8HWxrIJz6fUUov75WjMe2zQdeF-xJ6tOdUfRA5zI7w_NM-CMRS3eDNLAvAUgYMG7KsSEJFZGthi9Qobw4rjs10_jrX8jw29E6CFzEPKM9e1NeCAESKoEILvu_16XP_CskKVS3CWWG-WJ45uPl4rualZSGfLW9G5UG1SQXuaC2DTp3nEZjH40LigBoeaWiKSSRndhVh68NMc5YVHB3hSwXCA6IPLH7eqCnX95nQDhJS_oAufFxjiwBLzZ6tUE-CeyIi18-TKcSiKcAkpQjo2Iz2ZuQ1mcCcyZS7yNaiS8-kVbQWkALo2zI8-2dumFWk4PM3JLTqNLLAD3qytcM40iZAHW2Oa4A-s2VQEi-t7yZqLbbEgWAtcepnJn2Dd6PNua1ptnkFiL2A_9lnz87hpLrprZb86gWzeUunSeNeM9GKiWEXezpqsA1Q2u1Kdw0gZvmF44GJZQCyzXiizclmUuMSRB90___Bl_LeDzUjeICK8uGOEVgkRm6Wy37HydBDxIOI4Au9MKmm6CR9OaFg1kSKvK8mONLN84ms5AmXsVSCdUQd9e0Qy3YijRLpz3VoamSPEDEKnHIiJ6iX2SnPjsf12M9qmUaFMKt3iMCawv9COsxncqKot3zJDFeFve-VxJD3GgJYIq8IxfOIRnwVLg0sQRYLumWcCErxfQeuTuO2rVRdjMZP7BOgEJVO08cIaEOf2Lf6Rd4NGXG1CHijGjsX4S5HFS5G5MNh967okT9gW8waAZl7Lu1qss7jvwXSFAOFlrb62-erhFSChE0ioKK0HmPGTALmn3qi3QFzzfKiI3Q5_mOuPOemPAFEykgC7G5LKrvCCdOXokTlXrqUrIbSp70WdvyYcxxna5R4iYoeSVvROFwT24VUwcR9OS0b6t_do1r-Q8d-VT--QV4AR1n-zZ7mOb9c-7rNYIcl5MCWI35hVViR0_eB25sYonPoy4BWGWRf7atcjcJYdPCYQTptlG5xULzjU3TSSpzAtRzidjSHt7HtllkTYBF3pk4hH5I_fFg42KU1QfG49w_iAnG8WKHfi2IDOKKQfwH4xih7o-o0C6mzNQBwolqK9mDowWiNL0Hhrzxn9_0m0a39A9rqZbGP8MF7otTf9WydMoZbRRigC0ER7sMLsqS6w6OTT193nO8sDmta0CRNBpmb-vaHHdOqgKtU4lg3vTrw5zZ278Mu6FDSnLDXefzTM0_MbQY65VGPIlYMclcsjPc6s6X4W36ZnhEzvWBzN_xOllmqHRhUVkd8AHniwf0qM6cUcznek6BOnaX6c8walIehudzYxe7-zH5Xkzy5I0gXWwKbzxv_KQUMRT3nBycGF32f4uREmoyfC7c-yuWF_Ike8h6uiNrvJkjRdbyXX3uFsLF_naVdnKJSFjiygtzVqqPZMi_kIi-L88JBdN5nBiqaYxfO6En6emES1WPB9mcW4noTUvqrg==.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LXNvbC0yMDI2MDkyMnxvcGVuYWkifQ",
+                  "format": "openai-responses-v1",
+                  "id": "rs_039567778bb7e548016aeb28ff6da487d1b191d787c82cc054",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1098,
+          "completion_tokens": 151,
+          "total_tokens": 1249,
+          "cost": 0.0042535,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 1095,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0042535,
+            "upstream_inference_prompt_cost": 0.0027435,
+            "upstream_inference_completions_cost": 0.00151
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 88,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    }
+  ]
+}

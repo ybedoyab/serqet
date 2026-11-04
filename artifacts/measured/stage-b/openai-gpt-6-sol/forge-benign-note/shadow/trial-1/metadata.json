@@ -1,0 +1,33 @@
+{
+  "kind": "measured",
+  "provider": "openrouter",
+  "model": "openai/gpt-6-sol",
+  "scenario_id": "forge-benign-note",
+  "mode": "shadow",
+  "trial": 1,
+  "started_at": "2026-11-04T12:46:09Z",
+  "finished_at": "2026-11-04T12:46:21Z",
+  "dataset_version": "serqet-2026-11-04.2",
+  "dataset_hash": "66d337d04e7bb603b9dc37ca62f0556ff415e67eebbec25f6a372b5212ed1732",
+  "policy_version": "khepri-authority-v1",
+  "prompt_sha256": "ad2d09e315598f5d050f3cafab49ab50d85de72c17f91d26d1c2c7b89e0b616b",
+  "stop_reason": "finish",
+  "infra_error": false,
+  "cost_usd": 0.011093500000000003,
+  "cost_observation": "provider_reported",
+  "cost_complete": true,
+  "cost_is_billing_guarantee": false,
+  "usage": {
+    "prompt_tokens": 8824,
+    "completion_tokens": 406,
+    "reasoning_tokens": 63
+  },
+  "shared_spent_usd": 0.20495200000000002,
+  "response_ids": [
+    "gen-1793796370-EzMw65RDnPJ6Rn3H16v6",
+    "gen-1793796372-VvG9KNvLswFG75bnZ7K7",
+    "gen-1793796375-okqEYfrzejLZrtchDX5I",
+    "gen-1793796378-b0WFgIhMlFxj7THqTXbg",
+    "gen-1793796380-SyglzEZQVJi8YgnTbzVi"
+  ]
+}

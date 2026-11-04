@@ -45,3 +45,9 @@ export function measuredModels(): MeasuredTrial[] {
 export function measuredTrials(scenario: Scenario): MeasuredTrial[] {
   return scenario.measured_trials as MeasuredTrial[];
 }
+
+export function trialsFor(model: string, scenarioId: string, mode: string): MeasuredTrial[] {
+  return measuredModels().filter(
+    (trial) => trial.model === model && trial.scenario_id === scenarioId && trial.mode === mode,
+  );
+}

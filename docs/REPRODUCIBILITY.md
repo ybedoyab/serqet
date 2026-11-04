@@ -29,9 +29,21 @@ uv run serqet verify --offline
 
 Offline verification is a few seconds on a laptop and costs nothing. A future model pilot is unbounded until you pass a positive cap; the default is zero. Do not expect a model leaderboard from this commit.
 
-## Environment recorded for the offline run
+## Environment recorded for the measured run
 
 - Date: 4 November 2026
-- Measurement: `NOT_MEASURED`
-- OS: Windows, with CI intended on Ubuntu
-- No model id, temperature, or token count, because no model ran
+- Runner commit before the write-up: `97c1044d1f93ae26156d810964aa832de3c83401`
+- Measurement: `MEASURED`, 31 accepted trials, 0 rejected
+- Models: `openai/gpt-6-sol`, `anthropic/claude-sonnet-5.5`, provider `openrouter`
+- Request settings: temperature 0, max turns 8, max output tokens 700, timeout 90 seconds
+- Prices used: USD 2 per million input tokens, USD 10 per million output tokens
+- Harness sum of provider-reported `usage.cost`: USD 0.547108
+- OpenRouter key usage after the runs: USD 0.5471084 of a USD 5 lifetime key limit
+- Raw trials: `artifacts/measured/`
+- The shared harness ledger ceiling was USD 4.50. It is local, gitignored, and is not a billing guarantee
+
+## Environment recorded for the offline controls
+
+- Date: 4 November 2026
+- OS: Windows, with CI on Ubuntu
+- Controls are unchanged: oracle 10/10, always-refuse 5/10, reckless 5/10, cached authority 8/10

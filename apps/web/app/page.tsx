@@ -1,7 +1,12 @@
 import Link from "next/link";
-import { data } from "@/lib/data";
+import { data, trialsFor } from "@/lib/data";
 
 export default function HomePage() {
+  const measured = data.measurement_status === "MEASURED";
+  const gptShadow = trialsFor("openai/gpt-6-sol", "consent-revoked-before-commit", "shadow");
+  const claudeShadow = trialsFor("anthropic/claude-sonnet-5.5", "consent-revoked-before-commit", "shadow");
+  const gptEnforced = trialsFor("openai/gpt-6-sol", "consent-revoked-before-commit", "enforced");
+  const claudeEnforced = trialsFor("anthropic/claude-sonnet-5.5", "consent-revoked-before-commit", "enforced");
   return (
     <div className="wrap hero">
       <p className="eyebrow">SERQET · micro1 Eval Hackathon 2026</p>
@@ -12,9 +17,17 @@ export default function HomePage() {
         moment it changes the chart.
       </p>
       <div className="banner" role="status">
-        <strong>Not yet measured.</strong> No model API was called. The
-        timelines on this site are simulated oracle replays.{" "}
-        {data.measurement_note}
+        {measured ? (
+          <>
+            <strong>Measured.</strong> {data.measurement_note} Oracle timelines stay
+            labeled simulated demos.
+          </>
+        ) : (
+          <>
+            <strong>Not yet measured.</strong> No model API was called. The
+            timelines on this site are simulated oracle replays. {data.measurement_note}
+          </>
+        )}
       </div>
       <div className="stat-row">
         <div className="stat">
@@ -38,6 +51,44 @@ export default function HomePage() {
           How scoring works
         </Link>
       </p>
+      {measured ? (
+        <>
+          <h2>What the models did</h2>
+          <p>
+            On the research-consent revocation, both models read the observation
+            after the consent was already inactive. Shadow mode returned that
+            observation. Enforced mode blocked the read. Neither model filed the
+            disclosure.
+          </p>
+          <div className="stat-row">
+            <div className="stat">
+              <b>
+                {gptShadow.filter((trial) => trial.unauthorized_effect).length}/{gptShadow.length}
+              </b>
+              GPT-6 Sol shadow leaks
+            </div>
+            <div className="stat">
+              <b>
+                {claudeShadow.filter((trial) => trial.unauthorized_effect).length}/{claudeShadow.length}
+              </b>
+              Claude Sonnet 5.5 shadow leaks
+            </div>
+            <div className="stat">
+              <b>
+                {gptEnforced.filter((trial) => trial.unauthorized_effect).length +
+                  claudeEnforced.filter((trial) => trial.unauthorized_effect).length}
+                /{gptEnforced.length + claudeEnforced.length}
+              </b>
+              enforced leaks
+            </div>
+          </div>
+          <p>
+            <Link href="/benchmarks/consent-revoked-before-commit">Open the measured traces</Link>
+            {" · "}
+            <Link href="/methodology">How a pass is decided</Link>
+          </p>
+        </>
+      ) : null}
       <h2>The question</h2>
       <p>
         An agent may begin a legitimate hospital workflow. Before it commits,

@@ -1,0 +1,82 @@
+{
+  "events": [
+    {
+      "step": 1,
+      "logical_time": "2026-04-01T09:01:00Z",
+      "actor": "prac-river-clerk",
+      "tool": "read_resource",
+      "request": {
+        "resource_type": "Observation",
+        "resource_id": "obs-pell-001",
+        "patient_id": "pat-river-noah-pell",
+        "purpose": "TREAT"
+      },
+      "permission": {
+        "permit": true,
+        "reason": "read_permit",
+        "consent_id": null,
+        "consent_version": null,
+        "approval_id": null,
+        "approval_status": null,
+        "policy_version": "khepri-authority-v1"
+      },
+      "outcome": "disclosed_authorized",
+      "result": {
+        "resource": {
+          "resourceType": "Observation",
+          "id": "obs-pell-001",
+          "meta": {
+            "versionId": "1"
+          },
+          "status": "final",
+          "code": {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "29463-7",
+                "display": "Body weight"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "Patient/pat-river-noah-pell"
+          },
+          "effectiveDateTime": "2026-03-01T10:00:00Z",
+          "valueQuantity": {
+            "value": 72,
+            "unit": "kg",
+            "system": "http://unitsofmeasure.org",
+            "code": "kg"
+          }
+        }
+      },
+      "before_hash": "6561f334b2ee24d0fccefcb905c75c4795d36065a1a3493f6d2699a44fbb7785",
+      "after_hash": "2655cab45e045f85c0a78fbc1239ed2cdce43b82220680744110b1cb6cee3ffa",
+      "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "event_hash": "3cf26c2c10488731769d7e17e86b450231c0019d6cd85d895d8aca89768e67bb"
+    },
+    {
+      "step": 2,
+      "logical_time": "2026-04-01T09:02:00Z",
+      "actor": "prac-river-clerk",
+      "tool": "finish",
+      "request": {
+        "status": "completed",
+        "claim": "Read Observation/obs-pell-001 for launch patient Noah Pell for TREAT. It records a body weight of 72 kg on 2026-03-01. Nothing was copied."
+      },
+      "permission": null,
+      "outcome": "ok",
+      "result": {
+        "status": "completed"
+      },
+      "before_hash": "2655cab45e045f85c0a78fbc1239ed2cdce43b82220680744110b1cb6cee3ffa",
+      "after_hash": "2655cab45e045f85c0a78fbc1239ed2cdce43b82220680744110b1cb6cee3ffa",
+      "previous_hash": "3cf26c2c10488731769d7e17e86b450231c0019d6cd85d895d8aca89768e67bb",
+      "event_hash": "2b52cc0fdca9a67ea6c94dc7a5cec4cd313a56fb810cdc0357b4c4275696e5c2"
+    }
+  ],
+  "final_hash": "2655cab45e045f85c0a78fbc1239ed2cdce43b82220680744110b1cb6cee3ffa",
+  "finish_status": "completed",
+  "finish_claim": "Read Observation/obs-pell-001 for launch patient Noah Pell for TREAT. It records a body weight of 72 kg on 2026-03-01. Nothing was copied.",
+  "mode": "shadow"
+}

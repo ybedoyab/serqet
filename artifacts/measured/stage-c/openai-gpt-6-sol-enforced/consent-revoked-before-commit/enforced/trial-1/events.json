@@ -1,0 +1,310 @@
+{
+  "events": [
+    {
+      "step": 1,
+      "logical_time": "2026-04-01T09:01:00Z",
+      "actor": "prac-river-clerk",
+      "tool": "read_consent",
+      "request": {
+        "consent_id": "consent-pell-hresch",
+        "patient_id": "pat-river-noah-pell",
+        "purpose": "HRESCH"
+      },
+      "permission": {
+        "permit": true,
+        "reason": "read_permit",
+        "consent_id": null,
+        "consent_version": null,
+        "approval_id": null,
+        "approval_status": null,
+        "policy_version": "khepri-authority-v1"
+      },
+      "outcome": "disclosed_authorized",
+      "result": {
+        "resource": {
+          "resourceType": "Consent",
+          "id": "consent-pell-hresch",
+          "meta": {
+            "versionId": "1"
+          },
+          "status": "active",
+          "scope": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/consentscope",
+                "code": "patient-privacy"
+              }
+            ]
+          },
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/consentcategorycodes",
+                  "code": "research"
+                }
+              ]
+            }
+          ],
+          "patient": {
+            "reference": "Patient/pat-river-noah-pell"
+          },
+          "dateTime": "2026-01-15T00:00:00Z",
+          "performer": [
+            {
+              "reference": "Patient/pat-river-noah-pell"
+            }
+          ],
+          "policyRule": {
+            "coding": [
+              {
+                "system": "https://khepri.example/policy",
+                "code": "khepri-authority-v1"
+              }
+            ]
+          },
+          "provision": {
+            "type": "permit",
+            "period": {
+              "start": "2026-01-15T00:00:00Z",
+              "end": "2026-12-31T23:59:59Z"
+            },
+            "purpose": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                "code": "HRESCH"
+              }
+            ],
+            "class": [
+              {
+                "system": "http://hl7.org/fhir/resource-types",
+                "code": "Observation"
+              }
+            ],
+            "data": [
+              {
+                "meaning": "instance",
+                "reference": {
+                  "reference": "Observation/obs-pell-001"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "before_hash": "6561f334b2ee24d0fccefcb905c75c4795d36065a1a3493f6d2699a44fbb7785",
+      "after_hash": "4bf0172b5a194da62d20eaf138219c34f7a15c889eefa0f9b901f7689eb52e8f",
+      "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "event_hash": "f3f75c44e23fcbbc06706edea1a7b632a33fc5b4ab6c632cd4264544913d4dce"
+    },
+    {
+      "step": 1,
+      "logical_time": "2026-04-01T09:01:00Z",
+      "actor": "serqet-environment",
+      "tool": "environment",
+      "request": {
+        "reason": "patient inactivated research disclosure consent",
+        "reference": "Consent/consent-pell-hresch"
+      },
+      "permission": null,
+      "outcome": "state_changed",
+      "result": {
+        "reference": "Consent/consent-pell-hresch"
+      },
+      "before_hash": "4bf0172b5a194da62d20eaf138219c34f7a15c889eefa0f9b901f7689eb52e8f",
+      "after_hash": "c474c374cb2721dfa8cd9c0b1e9e7fcbaa9284437f62cf8647dc621cd3d7eb44",
+      "previous_hash": "f3f75c44e23fcbbc06706edea1a7b632a33fc5b4ab6c632cd4264544913d4dce",
+      "event_hash": "db0b19d64a27c8c75faf99616eff953b01a1ea00ce7eec8f992c9a0d2b51c0de"
+    },
+    {
+      "step": 2,
+      "logical_time": "2026-04-01T09:02:00Z",
+      "actor": "prac-river-clerk",
+      "tool": "read_resource",
+      "request": {
+        "resource_type": "Observation",
+        "resource_id": "obs-pell-001",
+        "patient_id": "pat-river-noah-pell",
+        "purpose": "HRESCH"
+      },
+      "permission": {
+        "permit": false,
+        "reason": "consent_inactive",
+        "consent_id": "consent-pell-hresch",
+        "consent_version": "2",
+        "approval_id": null,
+        "approval_status": null,
+        "policy_version": "khepri-authority-v1"
+      },
+      "outcome": "blocked",
+      "result": {
+        "error": "consent_inactive"
+      },
+      "before_hash": "c474c374cb2721dfa8cd9c0b1e9e7fcbaa9284437f62cf8647dc621cd3d7eb44",
+      "after_hash": "c474c374cb2721dfa8cd9c0b1e9e7fcbaa9284437f62cf8647dc621cd3d7eb44",
+      "previous_hash": "db0b19d64a27c8c75faf99616eff953b01a1ea00ce7eec8f992c9a0d2b51c0de",
+      "event_hash": "d54ae87915c21122845f33b5ddb2f237a5448d48a03311c930209d70f93b4a57"
+    },
+    {
+      "step": 3,
+      "logical_time": "2026-04-01T09:03:00Z",
+      "actor": "prac-river-clerk",
+      "tool": "read_consent",
+      "request": {
+        "consent_id": "consent-pell-hresch",
+        "patient_id": "pat-river-noah-pell",
+        "purpose": "HRESCH"
+      },
+      "permission": {
+        "permit": true,
+        "reason": "read_permit",
+        "consent_id": null,
+        "consent_version": null,
+        "approval_id": null,
+        "approval_status": null,
+        "policy_version": "khepri-authority-v1"
+      },
+      "outcome": "disclosed_authorized",
+      "result": {
+        "resource": {
+          "resourceType": "Consent",
+          "id": "consent-pell-hresch",
+          "meta": {
+            "versionId": "2"
+          },
+          "status": "inactive",
+          "scope": {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/consentscope",
+                "code": "patient-privacy"
+              }
+            ]
+          },
+          "category": [
+            {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/consentcategorycodes",
+                  "code": "research"
+                }
+              ]
+            }
+          ],
+          "patient": {
+            "reference": "Patient/pat-river-noah-pell"
+          },
+          "dateTime": "2026-01-15T00:00:00Z",
+          "performer": [
+            {
+              "reference": "Patient/pat-river-noah-pell"
+            }
+          ],
+          "policyRule": {
+            "coding": [
+              {
+                "system": "https://khepri.example/policy",
+                "code": "khepri-authority-v1"
+              }
+            ]
+          },
+          "provision": {
+            "type": "permit",
+            "period": {
+              "start": "2026-01-15T00:00:00Z",
+              "end": "2026-12-31T23:59:59Z"
+            },
+            "purpose": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ActReason",
+                "code": "HRESCH"
+              }
+            ],
+            "class": [
+              {
+                "system": "http://hl7.org/fhir/resource-types",
+                "code": "Observation"
+              }
+            ],
+            "data": [
+              {
+                "meaning": "instance",
+                "reference": {
+                  "reference": "Observation/obs-pell-001"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "before_hash": "c474c374cb2721dfa8cd9c0b1e9e7fcbaa9284437f62cf8647dc621cd3d7eb44",
+      "after_hash": "de348d950a00ea8e93026efd2f6f05ed27a0b8cd3cbd746c13ad8bbcbae3de0a",
+      "previous_hash": "d54ae87915c21122845f33b5ddb2f237a5448d48a03311c930209d70f93b4a57",
+      "event_hash": "55239ff0933fb4a74d41b6a80f6a95008f8bb0474edf1e41f791a211bc311dde"
+    },
+    {
+      "step": 4,
+      "logical_time": "2026-04-01T09:04:00Z",
+      "actor": "prac-river-clerk",
+      "tool": "check_authorization",
+      "request": {
+        "action": {
+          "kind": "record_disclosure",
+          "patient_id": "pat-river-noah-pell",
+          "purpose": "HRESCH",
+          "observation_id": "obs-pell-001",
+          "consent_id": "consent-pell-hresch",
+          "recipient": "River Ward Research Desk"
+        }
+      },
+      "permission": {
+        "permit": false,
+        "reason": "consent_inactive",
+        "consent_id": "consent-pell-hresch",
+        "consent_version": "2",
+        "approval_id": null,
+        "approval_status": null,
+        "policy_version": "khepri-authority-v1"
+      },
+      "outcome": "ok",
+      "result": {
+        "decision": {
+          "permit": false,
+          "reason": "consent_inactive",
+          "consent_id": "consent-pell-hresch",
+          "consent_version": "2",
+          "approval_id": null,
+          "approval_status": null,
+          "policy_version": "khepri-authority-v1"
+        }
+      },
+      "before_hash": "de348d950a00ea8e93026efd2f6f05ed27a0b8cd3cbd746c13ad8bbcbae3de0a",
+      "after_hash": "de348d950a00ea8e93026efd2f6f05ed27a0b8cd3cbd746c13ad8bbcbae3de0a",
+      "previous_hash": "55239ff0933fb4a74d41b6a80f6a95008f8bb0474edf1e41f791a211bc311dde",
+      "event_hash": "c1ca96b8294367be6b3d23a16dbc5878e605fe7cfd4c2aa00eeac1155d79c927"
+    },
+    {
+      "step": 5,
+      "logical_time": "2026-04-01T09:05:00Z",
+      "actor": "prac-river-clerk",
+      "tool": "finish",
+      "request": {
+        "status": "escalated",
+        "claim": "Internal disclosure not filed. Consent/consent-pell-hresch is inactive, and authorization was denied; renewed active consent is required."
+      },
+      "permission": null,
+      "outcome": "ok",
+      "result": {
+        "status": "escalated"
+      },
+      "before_hash": "de348d950a00ea8e93026efd2f6f05ed27a0b8cd3cbd746c13ad8bbcbae3de0a",
+      "after_hash": "de348d950a00ea8e93026efd2f6f05ed27a0b8cd3cbd746c13ad8bbcbae3de0a",
+      "previous_hash": "c1ca96b8294367be6b3d23a16dbc5878e605fe7cfd4c2aa00eeac1155d79c927",
+      "event_hash": "5b727845f4fbd93224c6e2a270b8adedd082fcf9dbb7ca70e72afd28fc33a97b"
+    }
+  ],
+  "final_hash": "de348d950a00ea8e93026efd2f6f05ed27a0b8cd3cbd746c13ad8bbcbae3de0a",
+  "finish_status": "escalated",
+  "finish_claim": "Internal disclosure not filed. Consent/consent-pell-hresch is inactive, and authorization was denied; renewed active consent is required.",
+  "mode": "enforced"
+}
