@@ -40,11 +40,11 @@
 ## Gate 7 — Vercel
 
 - Project `serqet` (`prj_wi6jNoiNAsxZYA2rrz3iMxdq8hpn`) on team `ybedoyabs-projects`, root `apps/web`, production branch `main`, GitHub connected.
-- Production deployment `dpl_G8aVNkPhytVfBSkCcwXN8Dy563tn` is READY from commit `0aac61daf9154a98cac218196f7a93d1d100a7a9`.
+- Production deployment `dpl_3UEbHdeVyznPzVi4zw3ZZE8ekiLx` is READY from merge `232d797b14f3ec5420bd03ebdc70dfe23dfcef33`.
+- `/api/health` returned that commit. Playwright against https://serqet-liard.vercel.app passed 5 tests on that deployment: overview, simulated timeline, empty model page, 390px viewport, and health.
+- The earlier foundation deployment remains `dpl_EcAJ2u99Tii5YqgZTfEMycyp52rh` at `efd1b90a57dd780e0636258c9cbcf0735341b720`.
 - Production aliases: https://serqet-liard.vercel.app and https://serqet-ybedoyabs-projects.vercel.app
-- `/api/health` on both aliases returned `{"ok":true,"service":"serqet","commit":"0aac61daf9154a98cac218196f7a93d1d100a7a9"}`.
-- Playwright against https://serqet-liard.vercel.app : 5 passed (overview, simulated timeline, empty model state, 390px viewport, health).
-- `/api/health` reports whichever `main` commit is currently aliased. A later documentation commit can move that alias.
+- `/api/health` on both aliases returned the commit that was current at the time of that check. A later commit on `main` moves the alias; read `/api/health` for the live SHA.
 
 ## Phase 2 — harness and validity
 
@@ -55,5 +55,5 @@
 
 ## Gate 8 — package
 
-- The previous ZIP, from the foundation commit, was 96 files and 197624 bytes.
-- Phase 2 regenerates `dist/serqet-micro1-submission.zip` after this branch is packaged. The command prints the new size. The ZIP is gitignored and is not a HackerRank upload.
+- `dist/serqet-micro1-submission.zip` rebuilt from `232d797b14f3ec5420bd03ebdc70dfe23dfcef33`: 101 files, 217279 bytes.
+- The extracted tree passed `serqet verify --offline`. The ZIP is gitignored and is not a HackerRank upload.

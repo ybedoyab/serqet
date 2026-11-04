@@ -19,7 +19,7 @@ cd apps/web && npm ci && npm run build && npm run start
 - Production branch: `main`
 - No required environment variables. Do not add provider keys to the project.
 
-Production, observed 4 November 2026 from deployment `dpl_G8aVNkPhytVfBSkCcwXN8Dy563tn` (commit `0aac61daf9154a98cac218196f7a93d1d100a7a9`):
+Production, observed 4 November 2026 from deployment `dpl_3UEbHdeVyznPzVi4zw3ZZE8ekiLx` (commit `232d797b14f3ec5420bd03ebdc70dfe23dfcef33`):
 
 - https://serqet-liard.vercel.app
 - https://serqet-ybedoyabs-projects.vercel.app
