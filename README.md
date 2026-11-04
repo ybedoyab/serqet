@@ -47,7 +47,7 @@ uv run serqet run-models --model openrouter/test --trials 1 --cost-cap-usd 0 --d
 uv run serqet report --input ../../artifacts/measured --output ../../artifacts/summary.json
 ```
 
-`verify --offline` does not open a network connection to a model provider. `run-models` without `--dry-run` exits `2` when the cost cap is `0` or no key is set, and it does not call the provider.
+`verify --offline` does not open a network connection to a model provider. `run-models` without `--dry-run` exits `2` before any socket when the cost cap is `0`, the selected provider key is unset, or token prices are omitted. OpenRouter and OpenAI use different keys and different hosts.
 
 The dashboard reads the generated JSON. It does not run models.
 
@@ -61,7 +61,7 @@ npm run build
 
 ## Layout
 
-- `packages/eval/serqet/` — sandbox, authority oracle, tool gateway, grader, baselines, CLI
+- `packages/eval/serqet/` — sandbox, authority oracle, tool gateway, grader, baselines, multi-turn runner, CLI
 - `packages/eval/scenarios/` — the ten task contracts. `agent_visible` is the only section a model prompt may use
 - `artifacts/demo/` — oracle replays, each marked `simulated_demo`
 - `artifacts/measured/` — reserved for real runs. Currently a README that says not measured

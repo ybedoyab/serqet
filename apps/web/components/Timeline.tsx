@@ -13,7 +13,15 @@ type DemoEvent = {
   result: Record<string, unknown>;
 };
 
-export function Timeline({ events }: { events: DemoEvent[] }) {
+export function Timeline({
+  events,
+  label = "SIMULATED DEMO",
+  note = "Oracle replay. This is not a frontier-model trace.",
+}: {
+  events: DemoEvent[];
+  label?: string;
+  note?: string;
+}) {
   const [index, setIndex] = useState(0);
   const event = events[index];
   if (!event) {
@@ -21,10 +29,8 @@ export function Timeline({ events }: { events: DemoEvent[] }) {
   }
   return (
     <div>
-      <p className="badge">SIMULATED DEMO</p>
-      <p>
-        Oracle replay. This is not a frontier-model trace.
-      </p>
+      <p className="badge">{label}</p>
+      <p>{note}</p>
       <div className="timeline-controls">
         <button
           type="button"

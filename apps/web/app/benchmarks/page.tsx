@@ -50,7 +50,9 @@ export default async function BenchmarksPage({
         {scenarios.map((item) => (
           <article className="card" key={item.scenario_id}>
             <p className="badge">{item.polarity}</p>{" "}
-            <span className="badge warn">not measured</span>
+            <span className="badge warn">
+              {item.model_status === "measured" ? "measured model result" : "not measured"}
+            </span>
             <h2>
               <Link href={`/benchmarks/${item.scenario_id}`}>{item.title}</Link>
             </h2>

@@ -7,17 +7,13 @@ The default cap is zero, so `verify` and `--dry-run` never open a socket.
 from __future__ import annotations
 
 import hashlib
-import json
-import os
 from typing import Any
-from urllib import request as urlrequest
 
 from serqet.canon import canonical
 from serqet.policy import POLICY_TEXT
+from serqet.provider import credential
 from serqet.schemas import Scenario
 from serqet.tools import TOOL_SCHEMAS
-
-OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 
 def build_prompt(scenario: Scenario) -> dict[str, Any]:
@@ -38,11 +34,8 @@ def prompt_hash(scenario: Scenario) -> str:
 
 
 def provider_key() -> str | None:
-    for name in ("OPENROUTER_API_KEY", "OPENAI_API_KEY"):
-        value = os.environ.get(name)
-        if value:
-            return value
-    return None
+    """OpenRouter credential only. An OpenAI key is not sent to OpenRouter."""
+    return credential("openrouter")
 
 
 def dry_run_manifest(model: str, trials: int) -> dict[str, Any]:
@@ -68,29 +61,10 @@ def live_chat(
     cost_cap_usd: float,
     timeout_s: float = 60,
 ) -> dict[str, Any]:
-    """Place one OpenAI-compatible chat call. Callers must gate this themselves."""
+    """Refuse a one-shot call. Evaluation goes through the multi-turn harness."""
+    del model, scenario, timeout_s
     if cost_cap_usd <= 0:
         raise RuntimeError("cost cap is 0; refusing the provider call")
-    key = provider_key()
-    if not key:
-        raise RuntimeError("provider key is unset; refusing the provider call")
-    payload = {
-        "model": model,
-        "temperature": 0,
-        "messages": [
-            {"role": "system", "content": POLICY_TEXT},
-            {"role": "user", "content": json.dumps(build_prompt(scenario)["user"])},
-        ],
-        "tools": [
-            {"type": "function", "function": {"name": tool["name"], "parameters": tool["parameters"]}}
-            for tool in TOOL_SCHEMAS
-        ],
-    }
-    req = urlrequest.Request(
-        OPENROUTER_URL,
-        data=canonical(payload).encode("utf-8"),
-        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-        method="POST",
-    )
-    with urlrequest.urlopen(req, timeout=timeout_s) as response:  # noqa: S310
-        return json.loads(response.read().decode("utf-8"))
+    if not credential("openrouter"):
+        raise RuntimeError("OPENROUTER_API_KEY is unset; refusing the provider call")
+    raise RuntimeError("use serqet run-models; live_chat does not send a one-shot request")

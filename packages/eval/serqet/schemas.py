@@ -94,6 +94,7 @@ class StatusPatch(StrictModel):
 class ScheduleItem(StrictModel):
     after_tool_calls: int = Field(ge=1)
     reason: str
+    before_commit: bool = False
     set_consent_status: StatusPatch | None = None
     set_approval_status: StatusPatch | None = None
 

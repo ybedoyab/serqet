@@ -46,7 +46,14 @@
 - Playwright against https://serqet-liard.vercel.app : 5 passed (overview, simulated timeline, empty model state, 390px viewport, health).
 - `/api/health` reports whichever `main` commit is currently aliased. A later documentation commit can move that alias.
 
+## Phase 2 — harness and validity
+
+- Dataset `serqet-2026-11-04.2`. Revocation on the two negative twins is applied before the commit decision. Control pass counts are unchanged: oracle 10/10, always-refuse 5/10, reckless 5/10, cached 8/10.
+- The multi-turn runner, provider routing, budget check, and measured-record validator are in the package. Mocked tests cover them.
+- No paid or free model call was authorized. Status remains `NOT_MEASURED`. API cost incurred: 0.
+- See `docs/VALIDITY_AUDIT.md` and `docs/EVAL_RUNBOOK.md`.
+
 ## Gate 8 — package
 
-- `dist/serqet-micro1-submission.zip` is 96 files and 197624 bytes.
-- Extracted tree passed `serqet verify --offline`. The ZIP is gitignored and is not a HackerRank upload.
+- The previous ZIP, from the foundation commit, was 96 files and 197624 bytes.
+- Phase 2 regenerates `dist/serqet-micro1-submission.zip` after this branch is packaged. The command prints the new size. The ZIP is gitignored and is not a HackerRank upload.
