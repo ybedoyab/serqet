@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Timeline } from "@/components/Timeline";
-import { data, scenarioById } from "@/lib/data";
+import { data, measuredTrials, scenarioById } from "@/lib/data";
 
 export function generateStaticParams() {
   return data.scenarios.map((item) => ({ slug: item.scenario_id }));
@@ -23,7 +23,9 @@ export default async function ScenarioPage({
       <h1>{scenario.title}</h1>
       <p>
         <span className="badge">{scenario.polarity}</span>{" "}
-        <span className="badge warn">model not measured</span>
+        <span className="badge warn">
+          {scenario.model_status === "measured" ? "measured model result" : "model not measured"}
+        </span>
       </p>
       <p>{scenario.summary}</p>
       <div className="detail-grid">
@@ -47,7 +49,10 @@ export default async function ScenarioPage({
             <ul>
               {scenario.schedule.map((item) => (
                 <li key={item.reason}>
-                  After tool call {item.after_tool_calls}: {item.reason}
+                  {item.before_commit
+                    ? "Before the commit decision, and again after tool call "
+                    : "After tool call "}
+                  {item.after_tool_calls}: {item.reason}
                 </li>
               ))}
             </ul>
@@ -66,6 +71,22 @@ export default async function ScenarioPage({
       </div>
       <h2>Step through the oracle</h2>
       <Timeline events={scenario.demo.events} />
+      {measuredTrials(scenario).map((trial) => (
+        <section key={`${trial.model}-${trial.mode}-${trial.trial}`}>
+          <h2>
+            Measured trace · {trial.provider}/{trial.model} · {trial.mode}
+          </h2>
+          <p>
+            Pass: {trial.task_pass ? "yes" : "no"}. Cost USD {trial.cost_usd}, which is not a
+            billing guarantee. {trial.failure_reasons.join(", ")}
+          </p>
+          <Timeline
+            events={trial.events}
+            label="MEASURED MODEL RESULT"
+            note="Provider tool transcript graded by the sandbox. This is not the simulated oracle replay."
+          />
+        </section>
+      ))}
       <h2>Synthetic chart</h2>
       <div className="card-grid">
         {scenario.resources.map((resource) => (

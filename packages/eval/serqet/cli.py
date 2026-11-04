@@ -3,17 +3,20 @@
 from __future__ import annotations
 
 import argparse
-import json
 import subprocess
 import sys
 import tempfile
 import zipfile
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
+from serqet.harness import Limits, run_episode
+from serqet.integrity import apply_trials, collect_trials, write_episode
 from serqet.loader import load_scenarios
-from serqet.models import dry_run_manifest, provider_key
+from serqet.models import dry_run_manifest
 from serqet.paths import repo_root
+from serqet.provider import credential
 from serqet.reporting import public_bundle, write_json
 from serqet.suite import run_controls, separation_problems
 
@@ -51,8 +54,16 @@ def main(argv: list[str] | None = None) -> int:
 
     run_models = sub.add_parser("run-models")
     run_models.add_argument("--model", required=True)
+    run_models.add_argument("--provider", default="openrouter", choices=["openrouter", "openai"])
+    run_models.add_argument("--mode", default="shadow", choices=["shadow", "enforced", "both"])
+    run_models.add_argument("--scenarios", default="")
     run_models.add_argument("--trials", type=int, default=1)
     run_models.add_argument("--cost-cap-usd", type=float, default=0.0)
+    run_models.add_argument("--input-usd-per-mtok", type=float, default=None)
+    run_models.add_argument("--output-usd-per-mtok", type=float, default=None)
+    run_models.add_argument("--max-turns", type=int, default=8)
+    run_models.add_argument("--max-output-tokens", type=int, default=700)
+    run_models.add_argument("--measured-dir", default="")
     run_models.add_argument("--dry-run", action="store_true")
 
     report = sub.add_parser("report")
@@ -89,11 +100,10 @@ def _list_scenarios() -> int:
 def _verify() -> int:
     scores = run_controls()
     problems = separation_problems(scores)
-    bundle = public_bundle(scores)
+    bundle = _published_bundle(scores)
     root = repo_root()
     write_json(root / "artifacts" / "summary.json", bundle)
-    web_data = root / "apps" / "web" / "data"
-    write_json(web_data / "benchmarks.json", bundle)
+    write_json(root / "apps" / "web" / "data" / "benchmarks.json", bundle)
     for scenario in bundle["scenarios"]:
         demo = {
             "kind": "simulated_demo",
@@ -117,7 +127,7 @@ def _verify() -> int:
         for problem in problems:
             print(f"- {problem}", file=sys.stderr)
         return 1
-    print("verify --offline: controls separated; measurement_status=NOT_MEASURED")
+    print(f"verify --offline: controls separated; measurement_status={bundle['measurement_status']}")
     return 0
 
 
@@ -141,6 +151,14 @@ def _print_matrix(bundle: dict[str, Any]) -> None:
     print(f"measurement_status\t{bundle['measurement_status']}")
 
 
+def _published_bundle(scores: list[Any] | None = None) -> dict[str, Any]:
+    bundle = public_bundle(scores)
+    accepted, _rejected = collect_trials(repo_root() / "artifacts" / "measured")
+    if accepted:
+        return apply_trials(bundle, accepted)
+    return bundle
+
+
 def _run_models(args: argparse.Namespace) -> int:
     if args.dry_run:
         manifest = dry_run_manifest(args.model, args.trials)
@@ -157,35 +175,100 @@ def _run_models(args: argparse.Namespace) -> int:
             file=sys.stderr,
         )
         return 2
-    if not provider_key():
+    if credential(args.provider) is None:
+        env_name = "OPENROUTER_API_KEY" if args.provider == "openrouter" else "OPENAI_API_KEY"
         print(
-            "NOT_MEASURED: OPENROUTER_API_KEY or OPENAI_API_KEY is unset. "
+            f"NOT_MEASURED: {env_name} is unset for provider {args.provider}. "
             "No provider call was made.",
             file=sys.stderr,
         )
         return 2
-    print(
-        "NOT_MEASURED: a key and a positive cap were visible, but this command "
-        "does not start a paid sweep from the default hackathon path. "
-        "Use a dedicated pilot only after reviewing docs/EVAL_RUNBOOK.md.",
-        file=sys.stderr,
+    if args.input_usd_per_mtok is None or args.output_usd_per_mtok is None:
+        print(
+            "NOT_MEASURED: pass --input-usd-per-mtok and --output-usd-per-mtok. "
+            "Missing prices abort before the first request.",
+            file=sys.stderr,
+        )
+        return 2
+    limits = Limits(
+        max_turns=args.max_turns,
+        max_output_tokens=args.max_output_tokens,
+        input_usd_per_mtok=args.input_usd_per_mtok,
+        output_usd_per_mtok=args.output_usd_per_mtok,
+        cost_cap_usd=args.cost_cap_usd,
     )
-    return 2
+    selected = {item for item in args.scenarios.split(",") if item}
+    scenarios = [
+        scenario
+        for scenario in load_scenarios()
+        if not selected or scenario.scenario_id in selected
+    ]
+    if not scenarios:
+        print("NOT_MEASURED: no scenarios matched --scenarios", file=sys.stderr)
+        return 2
+    modes = ["shadow", "enforced"] if args.mode == "both" else [args.mode]
+    stamp = datetime.now(UTC).strftime("%Y%m%dT%H%M%SZ")
+    slug = "".join(char if char.isalnum() else "-" for char in args.model)[:48]
+    destination = Path(args.measured_dir) if args.measured_dir else (
+        repo_root() / "artifacts" / "measured" / f"{stamp}-{args.provider}-{slug}"
+    )
+    spent = 0.0
+    for scenario in scenarios:
+        for mode in modes:
+            for trial in range(1, args.trials + 1):
+                episode = run_episode(
+                    scenario,
+                    mode,
+                    model=args.model,
+                    provider=args.provider,
+                    trial=trial,
+                    limits=limits,
+                    spent_usd=spent,
+                )
+                spent += episode.cost_usd
+                trial_dir = destination / scenario.scenario_id / mode / f"trial-{trial}"
+                write_episode(trial_dir, episode, provider=args.provider, model=args.model)
+                print(
+                    f"{scenario.scenario_id}\t{mode}\ttrial {trial}\t"
+                    f"stop={episode.stop_reason}\tcost_usd={episode.cost_usd:.6f}"
+                )
+                if episode.stop_reason in {"budget_exhausted", "pricing_missing", "provider_error"}:
+                    accepted, rejected = collect_trials(destination)
+                    print(
+                        f"NOT_MEASURED: stopped at {episode.stop_reason}. "
+                        f"accepted={len(accepted)} rejected={len(rejected)}",
+                        file=sys.stderr,
+                    )
+                    return 2
+    accepted, rejected = collect_trials(destination)
+    print(f"measured_dir={destination} accepted={len(accepted)} rejected={len(rejected)}")
+    if not accepted:
+        print("NOT_MEASURED: no trial passed integrity validation", file=sys.stderr)
+        return 2
+    print(
+        "Cost figures are estimates or provider-reported usage, not a billing guarantee. "
+        "Publish with: serqet report --input <measured-dir> --output artifacts/summary.json"
+    )
+    return 0
 
 
 def _report(source: Path, output: Path) -> int:
     bundle = public_bundle()
-    runs = []
-    if source.exists():
-        for meta_path in sorted(source.glob("*/metadata.json")):
-            meta = json.loads(meta_path.read_text(encoding="utf-8"))
-            if meta.get("kind") == "measured":
-                runs.append(meta)
-    if runs:
-        bundle["measurement_status"] = "MEASURED"
-        bundle["models"] = runs
-    write_json(output, bundle)
-    print(f"wrote {output} measurement_status={bundle['measurement_status']}")
+    accepted, rejected = collect_trials(source)
+    if not accepted:
+        write_json(output, bundle)
+        for item in rejected:
+            print(f"rejected: {item}", file=sys.stderr)
+        print(f"wrote {output} measurement_status=NOT_MEASURED")
+        return 2 if rejected else 0
+    published = apply_trials(bundle, accepted)
+    write_json(output, published)
+    write_json(repo_root() / "artifacts" / "summary.json", published)
+    write_json(repo_root() / "apps" / "web" / "data" / "benchmarks.json", published)
+    print(
+        f"wrote {output} measurement_status=MEASURED trials={len(accepted)} "
+        f"rejected={len(rejected)}"
+    )
     return 0
 
 

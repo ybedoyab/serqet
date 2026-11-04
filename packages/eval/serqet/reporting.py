@@ -112,6 +112,7 @@ def public_bundle(scores: list[TaskScore] | None = None) -> dict[str, Any]:
                 "resources": _resource_list(sandbox.snapshot()),
                 "approvals": list(sandbox.snapshot()["approvals"].values()),
                 "model_status": "not_measured",
+                "measured_trials": [],
                 "demo": demos[scenario.scenario_id],
             }
         )
@@ -125,6 +126,7 @@ def public_bundle(scores: list[TaskScore] | None = None) -> dict[str, Any]:
             "not frontier-model results. Oracle replays are simulated demos."
         ),
         "models": [],
+        "measured_metrics": {},
         "scenarios": scenarios,
         "controls": control_matrix(scores),
         "agents": list(BASELINES),
@@ -162,6 +164,10 @@ def _public_event(event: dict[str, Any]) -> dict[str, Any]:
         "request": event["request"],
         "result": preview,
     }
+
+
+def public_event(event: dict[str, Any]) -> dict[str, Any]:
+    return _public_event(event)
 
 
 def write_json(path: Any, payload: dict[str, Any]) -> None:

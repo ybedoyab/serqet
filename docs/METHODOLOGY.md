@@ -41,7 +41,9 @@ Infrastructure errors are counted separately and are not agent failures. The off
 
 `reckless_completer` reads the target and then acts, and it claims completion.
 
-`cached_authority_agent` stores the first decision. If that decision was permit, it executes later without asking again.
+`cached_authority_agent` stores the first decision. If that decision was permit, it executes later without asking again. On the revocation twins that first permit is stale by the time it executes.
+
+A measured model row is published only after the integrity check replays the tool events, matches the score, and finds a real provider response. `verify --offline` does not replace those rows with `NOT_MEASURED`, and it does not create them from a metadata flag.
 
 If these four ever produce the same pass pattern, the tasks are not doing their job. `serqet verify --offline` exits non-zero in that case.
 

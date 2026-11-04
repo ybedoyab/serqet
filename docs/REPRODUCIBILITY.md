@@ -5,7 +5,7 @@
 - Python `>=3.12`. This workspace used CPython 3.12.3 and uv 0.12.5.
 - Dependencies are locked in `packages/eval/uv.lock`.
 - The web lockfile is `apps/web/package-lock.json` after `npm install`.
-- Dataset version `serqet-2026-11-04.1`. `serqet verify` records `dataset_hash` over the scenario JSON bytes.
+- Dataset version `serqet-2026-11-04.2`. `serqet verify` records `dataset_hash` over the scenario JSON bytes.
 
 ## Commands
 
@@ -23,7 +23,7 @@ uv run serqet verify --offline
 
 ## Offline boundary
 
-`verify`, `baseline`, `scenarios list`, and `run-models --dry-run` do not call a model provider. Tests replace `urllib.request.urlopen` and expect it not to run. A live `run-models` without `--dry-run` returns exit code 2 when `--cost-cap-usd` is `0` or when `OPENROUTER_API_KEY` and `OPENAI_API_KEY` are unset.
+`verify`, `baseline`, `scenarios list`, and `run-models --dry-run` do not call a model provider. A live `run-models` returns exit code 2, without opening a socket, when the cost cap is `0`, the selected provider's key is unset, or the per-million token prices are omitted. `OPENAI_API_KEY` is not sent to OpenRouter. HTTP errors stay infrastructure failures and cannot set `MEASURED` by themselves.
 
 ## Approximate cost and time
 
