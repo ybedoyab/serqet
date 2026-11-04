@@ -8,6 +8,7 @@ from datetime import UTC, datetime
 from typing import Any
 
 from serqet import DATASET_VERSION
+from serqet.budget import BudgetLedger
 from serqet.grader import grade_trace
 from serqet.loader import dataset_hash
 from serqet.models import build_prompt, prompt_hash
@@ -49,6 +50,7 @@ class Episode:
     started_at: str
     finished_at: str
     prompt_sha256: str
+    shared_spent_usd: float | None = None
 
 
 def tool_payloads() -> list[dict[str, Any]]:
@@ -89,6 +91,7 @@ def run_episode(
     limits: Limits,
     spent_usd: float,
     transport: Transport | None = None,
+    ledger: BudgetLedger | None = None,
 ) -> Episode:
     started = _now()
     session = Session(scenario, mode)  # type: ignore[arg-type]
@@ -119,13 +122,19 @@ def run_episode(
             if spent + estimate > limits.cost_cap_usd + 1e-12:
                 stop = "budget_exhausted"
                 break
+            reservation = ledger.authorize(estimate) if ledger is not None else ""
+            if ledger is not None and reservation is None:
+                stop = "budget_exhausted"
+                break
             status, body = _call(client, provider, model, messages, limits)
             if status == 0 or status >= 400 or "error" in body and "choices" not in body:
                 responses.append({"received_at": _now(), "status": status, "body": body})
+                _close_reservation(ledger, reservation, estimate if status == 0 or status >= 500 else None)
                 stop = "timeout" if status == 0 else "provider_error"
                 break
             responses.append({"received_at": _now(), "status": status, "body": body})
             added, observation = _account(body, limits, estimate)
+            _close_reservation(ledger, reservation, added)
             spent += added
             if observation == "worst_case_estimate":
                 cost_complete = False
@@ -183,6 +192,7 @@ def run_episode(
         started_at=started,
         finished_at=_now(),
         prompt_sha256=prompt_hash(scenario),
+        shared_spent_usd=ledger.spent_usd if ledger is not None else None,
     )
 
 
@@ -203,6 +213,8 @@ def _call(
         "messages": messages,
         "tools": tool_payloads(),
     }
+    if provider == "openrouter":
+        payload["usage"] = {"include": True}
     body = json.dumps(payload).encode("utf-8")
     headers = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
     attempts = limits.retries + 1
@@ -278,12 +290,36 @@ def _tool_view(event: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _close_reservation(ledger: BudgetLedger | None, reservation: str | None, actual: float | None) -> None:
+    if ledger is None or reservation is None:
+        return
+    if reservation == "":
+        return
+    if actual is None:
+        ledger.release(reservation)
+        return
+    ledger.settle(reservation, actual)
+
+
+def _number(value: Any) -> float | None:
+    if isinstance(value, bool) or value is None:
+        return None
+    if isinstance(value, int | float):
+        return float(value)
+    if isinstance(value, str):
+        try:
+            return float(value)
+        except ValueError:
+            return None
+    return None
+
+
 def _account(body: dict[str, Any], limits: Limits, fallback: float) -> tuple[float, str]:
     raw_usage = body.get("usage")
     usage: dict[str, Any] = raw_usage if isinstance(raw_usage, dict) else {}
-    reported = usage.get("cost")
-    if isinstance(reported, int | float) and not isinstance(reported, bool):
-        return float(reported), "provider_reported"
+    reported = _number(usage.get("cost"))
+    if reported is not None and reported > 0:
+        return reported, "provider_reported"
     prompt = usage.get("prompt_tokens")
     completion = usage.get("completion_tokens")
     if (
@@ -306,6 +342,11 @@ def _add_usage(total: dict[str, int], usage: Any) -> None:
         value = usage.get(key)
         if isinstance(value, int):
             total[key] += value
+    details = usage.get("completion_tokens_details")
+    if isinstance(details, dict):
+        reasoning = details.get("reasoning_tokens")
+        if isinstance(reasoning, int):
+            total["reasoning_tokens"] = total.get("reasoning_tokens", 0) + reasoning
 
 
 def _now() -> str:
@@ -333,6 +374,7 @@ def episode_metadata(episode: Episode, *, provider: str, model: str) -> dict[str
         "cost_complete": episode.cost_complete,
         "cost_is_billing_guarantee": False,
         "usage": episode.usage,
+        "shared_spent_usd": episode.shared_spent_usd,
         "response_ids": [
             item["body"].get("id")
             for item in episode.responses

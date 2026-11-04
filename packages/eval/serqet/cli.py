@@ -11,6 +11,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
+from serqet.budget import HARNESS_CEILING_USD, BudgetError, BudgetLedger
 from serqet.harness import Limits, run_episode
 from serqet.integrity import apply_trials, collect_trials, write_episode
 from serqet.loader import load_scenarios
@@ -63,6 +64,7 @@ def main(argv: list[str] | None = None) -> int:
     run_models.add_argument("--output-usd-per-mtok", type=float, default=None)
     run_models.add_argument("--max-turns", type=int, default=8)
     run_models.add_argument("--max-output-tokens", type=int, default=700)
+    run_models.add_argument("--timeout-s", type=float, default=90)
     run_models.add_argument("--measured-dir", default="")
     run_models.add_argument("--dry-run", action="store_true")
 
@@ -190,12 +192,28 @@ def _run_models(args: argparse.Namespace) -> int:
             file=sys.stderr,
         )
         return 2
+    try:
+        ledger = BudgetLedger(repo_root() / "artifacts" / "budget" / "ledger.json")
+    except BudgetError as exc:
+        print(f"NOT_MEASURED: {exc}", file=sys.stderr)
+        return 2
+    print(
+        "shared_budget "
+        f"ceiling_usd={ledger.ceiling_usd:.2f} "
+        f"spent_usd={ledger.spent_usd:.6f} "
+        f"remaining_usd={ledger.remaining_usd:.6f} "
+        f"process_cap_usd={min(args.cost_cap_usd, HARNESS_CEILING_USD):.2f}"
+    )
+    if ledger.remaining_usd <= 0:
+        print("NOT_MEASURED: shared harness budget is exhausted", file=sys.stderr)
+        return 2
     limits = Limits(
         max_turns=args.max_turns,
         max_output_tokens=args.max_output_tokens,
+        timeout_s=args.timeout_s,
         input_usd_per_mtok=args.input_usd_per_mtok,
         output_usd_per_mtok=args.output_usd_per_mtok,
-        cost_cap_usd=args.cost_cap_usd,
+        cost_cap_usd=min(args.cost_cap_usd, HARNESS_CEILING_USD),
     )
     selected = {item for item in args.scenarios.split(",") if item}
     scenarios = [
@@ -224,6 +242,7 @@ def _run_models(args: argparse.Namespace) -> int:
                     trial=trial,
                     limits=limits,
                     spent_usd=spent,
+                    ledger=ledger,
                 )
                 spent += episode.cost_usd
                 trial_dir = destination / scenario.scenario_id / mode / f"trial-{trial}"
