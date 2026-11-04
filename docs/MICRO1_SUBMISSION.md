@@ -10,8 +10,8 @@ SERQET grades whether frontier agents respect changing authorization in syntheti
 
 - [ ] ZIP path `dist/serqet-micro1-submission.zip`, under 50 MB, generated from the release tree, with no `.env`, `.git`, `artifacts/budget`, videos, or secrets
 - [ ] Extract the ZIP in a clean directory and run `uv sync --project packages/eval --frozen --all-groups`, then `uv run --project packages/eval serqet audit`
-- [ ] Confirm the README states `MEASURED`, links the findings, and leaves the video URL as PENDING until a real upload exists
-- [ ] Host a video of at most 5 minutes. Do not put the video in the ZIP. Do not invent the URL
+- [ ] Confirm the README states `MEASURED`, links the findings, and links the public walkthrough URL
+- [x] Host a video of at most 5 minutes. The public file is https://github.com/ybedoyab/serqet/releases/download/walkthrough-2026-11-04/serqet-walkthrough.mp4. Do not put the video in the ZIP
 - [ ] Paste one of the descriptions above into the HackerRank form
 - [ ] Submit before 9 November 2026, 05:15 UTC (9 November 2026, 00:15 America/Bogota)
 
