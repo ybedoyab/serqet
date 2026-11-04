@@ -35,4 +35,4 @@ FHIR-AgentEval's paper, as retrieved from the PMC abstract and discussion, repor
 
 - The full HackerRank instructions tab behind the event login.
 - A live HAPI FHIR validation of every fixture. The local checker covers the R4 fields this suite reads and writes.
-- Any paid or free model API. See `measurement_status: NOT_MEASURED`.
+- Any model API, at the time these design notes were written. That check is historical. The later measurement is `docs/FRONTIER_MODEL_FINDINGS.md`, status `MEASURED`, 31 accepted trials. This notes file did not re-execute FHIR-AgentEval or MedAgentBench.

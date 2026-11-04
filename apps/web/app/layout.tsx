@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Header } from "@/components/Header";
 import "./globals.css";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "SERQET — Authority and consent benchmark",
@@ -8,9 +11,10 @@ export const metadata: Metadata = {
     "Trust the action, not the answer. A synthetic FHIR R4 benchmark for authority drift in healthcare agents.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
   return (
-    <html lang="en">
+    <html lang="en" nonce={nonce}>
       <body>
         <Header />
         <main id="content">{children}</main>

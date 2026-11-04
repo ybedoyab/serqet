@@ -37,6 +37,19 @@ test("mobile overview does not overflow the viewport", async ({ page }) => {
   expect(overflow).toBe(false);
 });
 
+test("keyboard focus is visible on the overview", async ({ page }) => {
+  await page.goto("/");
+  await page.keyboard.press("Tab");
+  await expect(page.locator(":focus")).toBeVisible();
+});
+
+test("tablet overview does not overflow the viewport", async ({ page }) => {
+  await page.setViewportSize({ width: 768, height: 1024 });
+  await page.goto("/");
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
+  expect(overflow).toBe(false);
+});
+
 test("health route reports the service", async ({ request }) => {
   const response = await request.get("/api/health");
   expect(response.ok()).toBeTruthy();

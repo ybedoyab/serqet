@@ -1,0 +1,4 @@
+# The measured trials and scenario manifests were hashed on Windows.
+# Check them out with CRLF so dataset_hash and the evidence rollup match every platform.
+artifacts/measured/**/*.json text eol=crlf
+packages/eval/scenarios/*.json text eol=crlf

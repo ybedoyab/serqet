@@ -20,8 +20,9 @@ export default async function BenchmarksPage({
       <h1>Ten workflows, five twins</h1>
       <p>
         A card marked <strong>measured model result</strong> has at least one
-        validated provider trial. Open a task for that trace. The stepped
-        timeline labeled simulated demo is still the oracle replay, not the model.
+        validated provider trial. The stepped timeline labeled simulated demo is
+        the oracle replay. Counts such as 3/3 are repeated trials of one task,
+        not a powered comparison of the two models.
       </p>
       <form className="filters" method="get">
         <label>
