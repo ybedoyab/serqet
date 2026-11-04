@@ -2,10 +2,11 @@
 
 ## Offline, every time
 
+Run from the repository root. `artifacts/` is that root, not `packages/eval/artifacts`.
+
 ```bash
-cd packages/eval
-uv sync --frozen --all-groups
-uv run serqet verify --offline
+uv sync --project packages/eval --frozen --all-groups
+uv run --project packages/eval serqet verify --offline
 ```
 
 Exit code `0` means the four controls still separate. Exit code `1` means a task or the grader regressed. Fix that before trusting any model number. `verify --offline` refreshes controls and simulated demos. It keeps model rows only when the files under `artifacts/measured` pass integrity checks. It does not turn a `kind: measured` flag into a result.
@@ -13,7 +14,7 @@ Exit code `0` means the four controls still separate. Exit code `1` means a task
 ## Dry run
 
 ```bash
-uv run serqet run-models --model openrouter/some-model --trials 1 --cost-cap-usd 0 --dry-run
+uv run --project packages/eval serqet run-models --model openrouter/some-model --trials 1 --cost-cap-usd 0 --dry-run
 ```
 
 This writes prompt hashes only and does not call a provider.
@@ -40,16 +41,21 @@ No stage below was run against a paid provider in the harness commit. Do not sta
 
 Two families, including one revocation family. Two distinct current models. One trial. One mode first (`shadow` or `enforced`, not both) so the bill stays small. Read the transcripts before widening the sample.
 
+From the repository root, after the key is in the process environment and a numeric cap has been approved. The harness does not read `.env` by itself. `--measured-dir` is relative to the repository root.
+
 ```bash
-uv run serqet run-models \
+uv run --project packages/eval serqet run-models \
   --provider openrouter \
   --model <provider/model-id> \
-  --scenarios consent-revoked-before-commit,consent-disclosure-holds,approval-withdrawn,approval-holds \
+  --scenarios consent-disclosure-holds,consent-revoked-before-commit,approval-holds,approval-withdrawn \
   --mode shadow \
   --trials 1 \
+  --max-turns 8 \
+  --max-output-tokens 700 \
   --cost-cap-usd <cap> \
   --input-usd-per-mtok <rate> \
-  --output-usd-per-mtok <rate>
+  --output-usd-per-mtok <rate> \
+  --measured-dir artifacts/measured/stage-a/<model-slug>
 ```
 
 ### Stage B — full benchmark
@@ -65,7 +71,9 @@ Re-run failures that look like authority mistakes. Keep provider errors out of t
 A trial directory needs `metadata.json`, `transcript.json`, `events.json`, `score.json`, and `responses.json`. The validator replays the events, checks the model id and timestamps, and rejects incomplete cost or provider failures.
 
 ```bash
-uv run serqet report --input artifacts/measured --output artifacts/summary.json
+uv run --project packages/eval serqet report --input artifacts/measured/stage-a --output artifacts/summary.json
 ```
+
+`report` reads `--input` relative to the current directory. From `packages/eval` that path would be `../../artifacts/measured/stage-a`. The command above assumes the repository root.
 
 Exit `0` with `MEASURED` means at least one trial passed that check. Exit `2` means nothing publishable was found. Keys, `Authorization` headers, and bearer tokens are not written. If a response still contains a credential marker, validation fails.
