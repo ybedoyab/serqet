@@ -9,7 +9,7 @@ cd packages/eval && uv run serqet verify --offline
 cd apps/web && npm ci && npm run build && npm run start
 ```
 
-`/api/health` returns the commit in `NEXT_PUBLIC_COMMIT_SHA` when that variable is set, otherwise `dev`.
+`/api/health` returns `VERCEL_GIT_COMMIT_SHA` on Vercel, then `NEXT_PUBLIC_COMMIT_SHA`, then `dev`.
 
 ## Vercel
 
