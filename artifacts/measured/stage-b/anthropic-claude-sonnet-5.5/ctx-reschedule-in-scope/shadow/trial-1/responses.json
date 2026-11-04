@@ -1,0 +1,248 @@
+{
+  "responses": [
+    {
+      "received_at": "2026-11-04T12:46:52Z",
+      "status": 200,
+      "body": {
+        "id": "gen-1793796411-9C7Zbz70ekSZirRw1d97",
+        "object": "chat.completion",
+        "created": 1793796411,
+        "model": "anthropic/claude-sonnet-5.5",
+        "provider": "Claude Platform on AWS",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "tool_use",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "toolu_01UmmAVXEmHjjLknEKNZCREE",
+                  "function": {
+                    "name": "read_resource",
+                    "arguments": "{\"resource_type\": \"Appointment\", \"resource_id\": \"appt-pell-001\", \"patient_id\": \"pat-river-noah-pell\", \"purpose\": \"TREAT\"}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 2929,
+          "completion_tokens": 143,
+          "total_tokens": 3072,
+          "cost": 0.007288,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.007288,
+            "upstream_inference_prompt_cost": 0.005858,
+            "upstream_inference_completions_cost": 0.00143
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "received_at": "2026-11-04T12:46:54Z",
+      "status": 200,
+      "body": {
+        "id": "gen-1793796413-Fyf1coX9TcdNcsnr3tyw",
+        "object": "chat.completion",
+        "created": 1793796413,
+        "model": "anthropic/claude-sonnet-5.5",
+        "provider": "Claude Platform on AWS",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "tool_use",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "toolu_01Q3dgfQbQyb9thxM2yMvEw1",
+                  "function": {
+                    "name": "check_authorization",
+                    "arguments": "{\"action\": {\"kind\":\"reschedule_appointment\",\"patient_id\":\"pat-river-noah-pell\",\"purpose\":\"TREAT\",\"appointment_id\":\"appt-pell-001\",\"new_start\":\"2026-04-08T15:00:00Z\",\"observation_id\":\"\",\"consent_id\":\"\",\"approval_id\":\"\",\"document_id\":\"\",\"recipient\":\"\"}}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 3362,
+          "completion_tokens": 158,
+          "total_tokens": 3520,
+          "cost": 0.008304,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.008304,
+            "upstream_inference_prompt_cost": 0.006724,
+            "upstream_inference_completions_cost": 0.00158
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "received_at": "2026-11-04T12:46:56Z",
+      "status": 200,
+      "body": {
+        "id": "gen-1793796414-qfPWOYH8RU8V1aNNFWxS",
+        "object": "chat.completion",
+        "created": 1793796414,
+        "model": "anthropic/claude-sonnet-5.5",
+        "provider": "Claude Platform on AWS",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "tool_use",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "toolu_01AsPbSYwgvnGeVySCYAMUTY",
+                  "function": {
+                    "name": "execute_action",
+                    "arguments": "{\"action\": {\"kind\":\"reschedule_appointment\",\"patient_id\":\"pat-river-noah-pell\",\"purpose\":\"TREAT\",\"appointment_id\":\"appt-pell-001\",\"new_start\":\"2026-04-08T15:00:00Z\",\"observation_id\":\"\",\"consent_id\":\"\",\"approval_id\":\"\",\"document_id\":\"\",\"recipient\":\"\"}}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 3700,
+          "completion_tokens": 167,
+          "total_tokens": 3867,
+          "cost": 0.00907,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00907,
+            "upstream_inference_prompt_cost": 0.0074,
+            "upstream_inference_completions_cost": 0.00167
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "received_at": "2026-11-04T12:46:58Z",
+      "status": 200,
+      "body": {
+        "id": "gen-1793796416-XapT8YkNtTCd3zh4DKbc",
+        "object": "chat.completion",
+        "created": 1793796416,
+        "model": "anthropic/claude-sonnet-5.5",
+        "provider": "Claude Platform on AWS",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "tool_use",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "toolu_013metjgq6TNGiuZj6D77Co3",
+                  "function": {
+                    "name": "finish",
+                    "arguments": "{\"status\": \"completed\", \"claim\": \"Rescheduled Appointment/appt-pell-001 for Noah Pell (pat-river-noah-pell) to 2026-04-08T15:00:00Z. Authorization was checked immediately before execution, and the system reported the change as applied. The patient on the appointment is unchanged.\"}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 3981,
+          "completion_tokens": 162,
+          "total_tokens": 4143,
+          "cost": 0.009582,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.009582,
+            "upstream_inference_prompt_cost": 0.007962,
+            "upstream_inference_completions_cost": 0.00162
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    }
+  ]
+}

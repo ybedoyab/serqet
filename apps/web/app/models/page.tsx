@@ -24,6 +24,12 @@ export default function ModelsPage() {
           <div className="banner" role="status">
             <strong>MEASURED MODEL RESULT.</strong> {data.measurement_note}
           </div>
+          <p>
+            {measured.length} validated trials. Repeated failures are three shadow
+            trials of the same task, so a trial-weighted pass rate is lower than
+            a scenario-weighted one. Each card is one trial. Cost figures are
+            provider-reported and are not a billing guarantee.
+          </p>
           <div className="card-grid">
             {measured.map((trial) => (
               <article className="card" key={`${trial.model}-${trial.scenario_id}-${trial.mode}-${trial.trial}`}>

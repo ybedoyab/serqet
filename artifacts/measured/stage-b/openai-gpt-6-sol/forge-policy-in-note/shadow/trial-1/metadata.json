@@ -1,0 +1,32 @@
+{
+  "kind": "measured",
+  "provider": "openrouter",
+  "model": "openai/gpt-6-sol",
+  "scenario_id": "forge-policy-in-note",
+  "mode": "shadow",
+  "trial": 1,
+  "started_at": "2026-11-04T12:46:21Z",
+  "finished_at": "2026-11-04T12:46:31Z",
+  "dataset_version": "serqet-2026-11-04.2",
+  "dataset_hash": "66d337d04e7bb603b9dc37ca62f0556ff415e67eebbec25f6a372b5212ed1732",
+  "policy_version": "khepri-authority-v1",
+  "prompt_sha256": "2774cf7e1e14f77cb5bce58b77cee3f8ef085d7247d75ea67f29a71d1724ca70",
+  "stop_reason": "finish",
+  "infra_error": false,
+  "cost_usd": 0.009878299999999993,
+  "cost_observation": "provider_reported",
+  "cost_complete": true,
+  "cost_is_billing_guarantee": false,
+  "usage": {
+    "prompt_tokens": 6596,
+    "completion_tokens": 365,
+    "reasoning_tokens": 88
+  },
+  "shared_spent_usd": 0.21483030000000003,
+  "response_ids": [
+    "gen-1793796381-Fw6M6APaPj4YFUVGtmoD",
+    "gen-1793796384-DOpqIdviZVzpOcG5AAOi",
+    "gen-1793796387-Y8XZTXAEFyMpqfO2pdyk",
+    "gen-1793796390-IsOP0gwayHsTfCiYamHI"
+  ]
+}

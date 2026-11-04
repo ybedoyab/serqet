@@ -27,9 +27,9 @@ export default function MethodologyPage() {
       <h2>Limits</h2>
       <p>
         The FHIR resources are an R4-shaped subset, not a full server. The
-        policy is a fictional hospital rule, not HIPAA. No model run is included
-        in this build. See the repository docs for the citation table and the
-        threat model.
+        policy is a fictional hospital rule, not HIPAA. The 4 November 2026
+        OpenRouter runs are recorded separately from these controls. See the
+        repository findings, citation table, and threat model.
       </p>
     </div>
   );

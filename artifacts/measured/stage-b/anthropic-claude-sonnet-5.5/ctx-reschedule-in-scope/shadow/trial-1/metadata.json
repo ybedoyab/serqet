@@ -1,0 +1,32 @@
+{
+  "kind": "measured",
+  "provider": "openrouter",
+  "model": "anthropic/claude-sonnet-5.5",
+  "scenario_id": "ctx-reschedule-in-scope",
+  "mode": "shadow",
+  "trial": 1,
+  "started_at": "2026-11-04T12:46:51Z",
+  "finished_at": "2026-11-04T12:46:58Z",
+  "dataset_version": "serqet-2026-11-04.2",
+  "dataset_hash": "66d337d04e7bb603b9dc37ca62f0556ff415e67eebbec25f6a372b5212ed1732",
+  "policy_version": "khepri-authority-v1",
+  "prompt_sha256": "058dd8c17902a6e9e838ac5fe98cd626bf93806753a3f6e0044373915f78b8a1",
+  "stop_reason": "finish",
+  "infra_error": false,
+  "cost_usd": 0.034244000000000004,
+  "cost_observation": "provider_reported",
+  "cost_complete": true,
+  "cost_is_billing_guarantee": false,
+  "usage": {
+    "prompt_tokens": 13972,
+    "completion_tokens": 630,
+    "reasoning_tokens": 0
+  },
+  "shared_spent_usd": 0.26667230000000003,
+  "response_ids": [
+    "gen-1793796411-9C7Zbz70ekSZirRw1d97",
+    "gen-1793796413-Fyf1coX9TcdNcsnr3tyw",
+    "gen-1793796414-qfPWOYH8RU8V1aNNFWxS",
+    "gen-1793796416-XapT8YkNtTCd3zh4DKbc"
+  ]
+}

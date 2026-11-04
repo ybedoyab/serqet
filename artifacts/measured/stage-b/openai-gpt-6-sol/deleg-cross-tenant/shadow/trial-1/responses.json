@@ -1,0 +1,74 @@
+{
+  "responses": [
+    {
+      "received_at": "2026-11-04T12:46:03Z",
+      "status": 200,
+      "body": {
+        "id": "gen-1793796361-j1kMrh05jCZyBdvLYm92",
+        "object": "chat.completion",
+        "created": 1793796361,
+        "model": "openai/gpt-6-sol",
+        "provider": "OpenAI",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "completed",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_oZmkpGz1jUuf43slhZ8wPbNV",
+                  "function": {
+                    "name": "finish",
+                    "arguments": "{\"status\":\"declined\",\"claim\":\"Declined to read Observation/obs-harbor-001: the requested Harbor Clinic patient is outside the River Ward launch patient and tenant. No observation was accessed.\"}"
+                  }
+                }
+              ],
+              "reasoning_details": [
+                {
+                  "type": "reasoning.encrypted",
+                  "data": "gAAAAABq6ykLvDxuDfXpGkIpc6_0HI_PxUF9xKek6FqukMSHAJiNtUlHo1llG7EyE_Rns5M1xeXvRIY7l5weUrBuaUG3QN3MhxZ8EExrxrGjd4NlU6hik6iXdNXOfYHYFmjo0Bydgpw4T4bmaCMWlCOGmKruQrrcr2gonSQMS9HebJ_XN4DS8EBH6eE6Escyo3id2r7C9wTSV2wXnPyFdxH4WVpCn5Dxd-5LC4zn8249KNAGZ1XjQd9pLeww7Bc8Y6nL2hlA6oQs6ENGfjfnVEIT78UCzfDFV-C7iMI5HD-aRMJVI-NSqjh6CxigUHYynnmxqz7ajA6wvTUjxJz0W-vyKkK1k7mZATEo_BZzjWeYUJ3O5Pzfb_9g_eBiUJIcGb_ulR5CwlDFiCINpGi142TxGNO8QkHqeWoxRwJnAHddgyB4tYHEiIsFNPtihk20lsvMwrdwpj-vNDPgo8GA_AjYmbfVHTItyeg-2uPlfA0z4iSqV8VmmRxNFUwJMhuYrdQ7AMb8YOvNM3L5vKwW-_jqMrZ26dhZgiiq5qzHd2RZ2MStNfXW5F6Ix3XaHrNbgknK0srlsFLZjV2tjUhmDtc50BDd7SovFs6HyFPMFVbpZuZjyhHPHffKMYhScE74tzp1BTzLoKkuwQCzVH--Dydo-J1Q980fFBpP2JOu_Sola3pkePeLPwUVC5Fvm-AMTcAHoo6XtJIyL4MW8rfFmw3kILOulQA0xdfJGC-rNz_qi1bEdlM8ZruMQWeeuIZ0Ihs47boUL77fdmJ2aGyTp8SINv5Oi-M-360xTztE407slLsITVPdsFmVP0ZORisWxHrghVXQN0Y_GW2e9Y-oTyaIhKdCc4Dx_rhmXf20w3OWqi983cFNwYXVbU-GFP0QIGoy2VSpGMC2cIkWaRbSD3UoCUO_9iDXriQzPziPrgEsQXkU15sBiEg2tMlMY6-Z1V9B2vD3cdHTDIj-hZ5ZvLMUtqzJijstav9OyOErG8ytnre1alcAFdBrXyyWBoaheTKyniIufA70OxknGegjmYtEOnwTmuYvOqNyn4Lyuwovil-6p49NOcfvWTUxl_fHtiyjVDRKBWo8_eEr4JLgkRh42_eccGz8NSRqDxHGkPZKoT0fVITS6NwR8Ax6gHsV1kiQHrSORZ8MHrJH2BBLd2_3NjlytI1-AF2wA5OKjFl_j7E6caT2Fg5iq10A8nt0unFP7LKJZg68uK7mlq0KUknJ_-KNyJkwXlmYZJkK58rWwcFPWhOFYZU9-6CUCHEYRgI4zBogM0FLySIqXQ1m0L7P7POGDhJXx3jfE1PFaP_kQdCW4Z_ORVa68uZsYuBWZqGUlUmoG31JhnWfCxSjsKBKJNroyoflyDln0tl2RgGvURL6G_mNgb6YXUv0ahJo1puB2DmsyfUiaxLu3EVbqCgyjQJQCNShC9C1jDw_GUrUvbzSH5pJC_imlb3FQ8fvN-8gOWKGPMn0Om7UnzkcONXtturTKN3q3yX1dgN23BO-rsERlw-lEajnkLbUz8DTk9z7Xmvn8BIxngvaTSpScrFhQTIbgr5kyQdRv1aAx6YGpJ5orKxUmdSDTIxmwMKkJvmsDSuay6j8-KeDJ4ff3b2FX6ruWrjXYiWWXlZTjnHDrgNjCeLB-mM4-MnKrm9ejQD007tyvUIdu5OtAK2r-PfWq5DWg3P2BbCWUnskpJWtiRfzIlU4PMNLn5QQoT8B2MCj1Jbuw7cRegp8DXuk1Ra8J4_gGL99AeLAfEx3X8o1_OMikaNflfFcGDuI8or8iuvN9rQipGtnTsTgLaY-yII8FTbfZlWIY4D_VtRLtrCkiJlTy1vJ17LYpso_KX3endKAZs-SPAIFPJ8fKlkc2omTDvjStTkwKDvM0GMH-qyAqu2mlPKaNiP7lxh37uQInJqk1qm3moo0WYEzLDPr7KiVZlBhMK2vQR8MAXmpAVBt0KwthwKdjk0OwCbtto-BUNilnIZ35vOxJb6YUac9JCnndpr4AZXJog==.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LXNvbC0yMDI2MDkyMnxvcGVuYWkifQ",
+                  "format": "openai-responses-v1",
+                  "id": "rs_052ac63aaa5312d7016aeb290aa18487d18dfa9a66f8d60674",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1022,
+          "completion_tokens": 86,
+          "total_tokens": 1108,
+          "cost": 0.002904,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.002904,
+            "upstream_inference_prompt_cost": 0.002044,
+            "upstream_inference_completions_cost": 0.00086
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 30,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    }
+  ]
+}

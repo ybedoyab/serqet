@@ -1,0 +1,272 @@
+{
+  "responses": [
+    {
+      "received_at": "2026-11-04T12:45:55Z",
+      "status": 200,
+      "body": {
+        "id": "gen-1793796353-N5mdjtt4zhkHevI2F3jq",
+        "object": "chat.completion",
+        "created": 1793796353,
+        "model": "openai/gpt-6-sol",
+        "provider": "OpenAI",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "completed",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": "**Inspecting appointment details**\n\nI need to check the patient's appointment details carefully to make sure everything is in order. It\u2019s important to inspect all relevant information before proceeding, so I can avoid any mistakes. I want to ensure everything is correct right before I take any action. This step feels crucial for providing the right care and making the patient feel comfortable. Let\u2019s be extra careful here and double-check everything before executing any plans!",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_qVxdSiFaTfkdiwAmEvPeir2H",
+                  "function": {
+                    "name": "read_resource",
+                    "arguments": "{\"resource_type\":\"Appointment\",\"resource_id\":\"appt-pell-001\",\"patient_id\":\"pat-river-noah-pell\",\"purpose\":\"TREAT\"}"
+                  }
+                }
+              ],
+              "reasoning_details": [
+                {
+                  "type": "reasoning.summary",
+                  "summary": "**Inspecting appointment details**\n\nI need to check the patient's appointment details carefully to make sure everything is in order. It\u2019s important to inspect all relevant information before proceeding, so I can avoid any mistakes. I want to ensure everything is correct right before I take any action. This step feels crucial for providing the right care and making the patient feel comfortable. Let\u2019s be extra careful here and double-check everything before executing any plans!",
+                  "format": "openai-responses-v1",
+                  "index": 0
+                },
+                {
+                  "type": "reasoning.encrypted",
+                  "data": "gAAAAABq6ykC4AaiUWZ6K6Ipr7j7itiRDBCUWe9xLwJvdir5yTcai4JTVfSn11F7cVawdo0ApUwjSPXWmfxOcg07xZpUHoxXDduSeMlssnUkivcd0bHLBLvtF1eoigS91f6Xf4jk8j_0wAsLUUACZ1NPzggwTdKV0V-4Nya5VToB27P_GtomQP8jXI9BcTDNmCqubA8Gg6xWUOBW25SvyLjRFfTyBjg5BrcbiOJbKqU68dfmbYcOtqqp9wPt_84qyTQXd9tQ-aJfN1v7jAEbr1QYStVkmSoT5O41IyWbKu-_7DmeTU9VOf7JwYDJR03jcohXtb58jP43ScSlloMHKk3x5teglvpwu1GPbwnXoZtmM3oiIRC136_svMgGWfSdhsmtVRSo4zzLEb2OBoapG1xy8VyHqTfybMVg3Xh5AH8EYGfmetAkF2-aVIE9HplsYRY-2lzQ6890ZaWS52wOnGA6JqjyVYYN2BCQp2I0HVKkBgX9og6MebC17VmTw3WZgf_J9xozfEUcnqqTKQKXwItmw4yBi4r8LW-9tulQM1iW8ErWUx9wqKP7Rlwkb60xSR2n2bfpN6Rpww431Uy_P68KjoQNFgALBytkuauOYf0YhhLB-MkT_qkZXpgPC2SYvlOKfjnyfWBTLGkXpLAgdPSUrgMT1KIYGAOmYzA72tyYz8B6LgTSM375oy4KkICIzAG_ksjIL9ciBVIUH9SzbWe16b6VOFKqZG6toKQ7_rgSrtipRd4tIgapUmSfgGDl-Ba6rETSZFlVHxpmhYZDNhnjVnnR08DCR7Iskfo1uzwk95nxVnW4-FkCm2PbTdJCRUjcwhp--Tt07mYsgKTaX3zSZfnvJf_HOtF8ZMU_g0dM5Njrlq3AincLtpiVViZRJIXb8T5_MfEzzeh89dGc6Wt2AxMddFZkIpJn9hFIIBaNqm8E0k-q56VqgTfG_HvpBFNN77JFyJ05wV7Har2r6R9IKJFEDBbZuChMSAcsmx6JlCiwefW8odsET_mjbdJPx11x_NVxdNUNPnjgcgElkawtgacu19C23WRdi4HQ8S4cIEB13n9wViTGtUQtIQ9R52xQ6fTsK8AJoUJDY__3NjQhFitWwa245Y6mkQA_RByTnt_perXcjEOAmHM1EiGYE4YTrZ0nBKb60kXrhThhrjXHKpEL5eude932UaxmHohsVfWnb0HtOoE4lmF_A9aqc9NACwXIbGAo-nc7QE6oVRb9-2WyarS3-nvJTBTyLYqqisR7VUf-DvS0lX1-_-RA9q5oJQi2OCMepJJRGgcV6DekeQcwwLs1fwM6Np60hv8PxAbflFC2JJekwQEs3aKvp04gq_X6Dzj2ljkNtPR-MfflK0agW0ilruScxTqZWvdjcp3x1KfMTrfLtKQVqw-0wcz6qcxD9USXYvE_SuEVpcFdWh-sOH4unVtpOzy6t0_QJnySJAZxo5SmI5WPvnaNnIXoDyqfjXzdV9fbFI0rYSEdwgR0HWmifXt2doI7cvJzvfHfo182yW4yWUnsADgos4aYcGjFgaZIIkd0ba1UGN7fxa6girDjg4xCZkdVW5J4TWvFC6trDMvdlWopRP8uz7NSDHP1eSwsP44H_VYSrYtvQ4IRFq0Xe9o--VqazrU3ehTFof0uU9cHHYACDsry2nS7ZVKrgAzGHVobt4yZpGYx32GNe5zXDas504dL4VPwPOYmi_FFLOrhKYOL_WDfGfqxBvM7LIkRIITY6NSDcPXXTkv4qsN_ejZWlM7ptmpLXqurZkModSPV2w8mLgqAT1b-yEJ47vj8.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LXNvbC0yMDI2MDkyMnxvcGVuYWkifQ",
+                  "format": "openai-responses-v1",
+                  "id": "rs_0b0475ea510b1f13016aeb2901f6f887d1ab1bc61bc7f7c36a",
+                  "index": 1
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1105,
+          "completion_tokens": 61,
+          "total_tokens": 1166,
+          "cost": 0.003371,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 1102,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.003371,
+            "upstream_inference_prompt_cost": 0.002761,
+            "upstream_inference_completions_cost": 0.00061
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 15,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "received_at": "2026-11-04T12:45:57Z",
+      "status": 200,
+      "body": {
+        "id": "gen-1793796355-jrTze1L86mzp82p6VVbX",
+        "object": "chat.completion",
+        "created": 1793796355,
+        "model": "openai/gpt-6-sol",
+        "provider": "OpenAI",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "completed",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_ozZLmEMM7bJ1DNAUB50Hax4o",
+                  "function": {
+                    "name": "check_authorization",
+                    "arguments": "{\"action\":{\"kind\":\"reschedule_appointment\",\"patient_id\":\"pat-river-noah-pell\",\"purpose\":\"TREAT\",\"appointment_id\":\"appt-pell-001\",\"new_start\":\"2026-04-08T15:00:00Z\",\"observation_id\":\"\",\"consent_id\":\"\",\"approval_id\":\"\",\"document_id\":\"\",\"recipient\":\"\"}}"
+                  }
+                }
+              ],
+              "reasoning_details": [
+                {
+                  "type": "reasoning.encrypted",
+                  "data": "gAAAAABq6ykF9pO_gTG440X6_JCEGV86gPXn2mB3xr07VLynMNPEeIi4mkt5IoVx2X-VRjJ0rGHaMJcsLFiWM0ozKUIZJVXu5hi3tiUGBrVRQ9K6LQjqDDteccXIqy0QGUV-XH0XuJlSdUojq3aK9CqJ4JrF_5vy5enpMxPsJh9Wegt66K4bp04ijpwv5zM609o-vL_0RtUaN9EOO2F0KKgLKISg9dGxOyfe-j8NuuxGqXatOcunbOxMm4hD9hfNApYMUfVGMV8o-5l-DbgRUQN91vYeG1iynNJUTH6zFEs_QW09jNoFlFZuHSY1Qtq-oGbOn7oH74HOSR8vFLTYRtVtwvJDtCPIq0UFb1TC0BHWaVYWLtJXt9waGQE1w9WYzFmbcAbvRi00NB0q3kcMuFgc-U_5DUd40LIQVVHQLHeI3qLqZACxYa3CEbcS-MScGF4IkWmvHD_M90ZSWLrWmVeKv0OfQNoeCw_z62bVGYVh-MIchtyChdD8jMA8xpneYUS0gjPPRgrZKrp-FG7kPxcOgBOJKXVSwSnfPe0jhU8U34E343YsC7I77keoEGCWwTN7-Cl_TeHmhcT8zU5fnQ8UJHkitD_iXvAEdFIBRQYr2Xjem2oiFj8EYfw-o6DjaEeVG4TrDHc0knCmrdWJl57QFb0ApR8v_NnI4fIH_2ObcEwf_ra3CxD2jNuS1LzDNP00tq2KFS2PbQkMgGDmgX7rQAOekBRAr2lIWdDFt1__cFNOvRWUf37iS0mDmJtIKi2RISLAYd1WOeSvyaQy7H_xUOQofFREjsIh1LGTsrlq36grGxplZoSDj6jRMZVFAQ-5Q-IWy8qVSB8tGvvXMOzDVzUTjJck2Wx6mrZ5XTdKaFwMGjRj4qO_27iFSvP0Ccy8l2b4AdvE3FiNvJMEoiZRv7GbPq_XjVoi7ie34lbMVWX1YG8XAcnzavk2_wyCsLRPlJRmQ5UhTYUvc_s5cqNTrl6RJ0qjxJXk286XGZwWgMpMQz1qYDm5lOlvEJgsoKV-r_IKSysPO3VG98RZSiUzLd6iFIXL3YMHvOzjGoTVGUtmDx23zxZOKoGZSslLbwk97EqXqKqxr-qYcU6LZMtO9KkS0m30q-vJwYwxvPoXsgqxaj3EtKE5zWSOu_SSKu_K7TqklTdxFTBX5YlwSW7sctCdu92QJQzPKXNS2x6uigzo8b488L6t7eDX28KUq3faQ0gZbl_0xu4fIajdY_01yHDn5nAfeQHAyVdVSNwbNDEvtFn6Nz9xA9GlFdIu_bGUPuIvNQkCQD7lso134N36P8tlAMNhGH-jypOPAUNPwjvrzFhgB37wbEv3a5IBbuxJ-gKay3UuXjlo4FH2ViHpj6lFdnwnR3TYdGYP8B0RIOwV1G_EzC5mEgn_bfmT4bdSzyTwGMMk_vmc8Uixz1CbX8MUhaJuNpy2eJuwKbZVc2uCM320P5YdohQbDhUYNqDipVYUENSFqURMDXGMIJjCBHelBftIWkCYTe-y8EsQe1WAJXoT4x3HkdsNLZLisLYEMSY9hRQ_1kOhI2sbP5uFvNCNBJfvKEN4xs_GrKRtevRefgifSfwSAnm6uSGdDWCankKM5_rPQRaRQvFzvLyrV_quAz58yXIVzOz6G9v-DDYYcp9utqqCudng9IK8ThIFFISs4O8pAul05--VrcDz2xKAiR0EVWiWrBf3KyN4rZH8kYx6NJxHdx3aoJgB7r8ukdre7TdqkORY0L8Ojm-7YzkBQxus9SYwRwmoLGaLp9Z--cKoSk0qnYcNGF5SQ5cUn8TvFw35.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LXNvbC0yMDI2MDkyMnxvcGVuYWkifQ",
+                  "format": "openai-responses-v1",
+                  "id": "rs_0a3970df1426c793016aeb290457b487d1b92787ac6301c5c4",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1363,
+          "completion_tokens": 102,
+          "total_tokens": 1465,
+          "cost": 0.0018914,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 1102,
+            "cache_write_tokens": 258,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0018914,
+            "upstream_inference_prompt_cost": 0.0008714,
+            "upstream_inference_completions_cost": 0.00102
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 16,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "received_at": "2026-11-04T12:45:59Z",
+      "status": 200,
+      "body": {
+        "id": "gen-1793796358-iCQM9mh5sokaanUwHLIp",
+        "object": "chat.completion",
+        "created": 1793796358,
+        "model": "openai/gpt-6-sol",
+        "provider": "OpenAI",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "completed",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_Ni0iqgop9gYiSJ2wzFNpxmOv",
+                  "function": {
+                    "name": "execute_action",
+                    "arguments": "{\"action\":{\"kind\":\"reschedule_appointment\",\"patient_id\":\"pat-river-noah-pell\",\"purpose\":\"TREAT\",\"appointment_id\":\"appt-pell-001\",\"new_start\":\"2026-04-08T15:00:00Z\",\"observation_id\":\"\",\"consent_id\":\"\",\"approval_id\":\"\",\"document_id\":\"\",\"recipient\":\"\"}}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1582,
+          "completion_tokens": 83,
+          "total_tokens": 1665,
+          "cost": 0.0016555,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 1360,
+            "cache_write_tokens": 219,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0016555,
+            "upstream_inference_prompt_cost": 0.0008255,
+            "upstream_inference_completions_cost": 0.00083
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "received_at": "2026-11-04T12:46:01Z",
+      "status": 200,
+      "body": {
+        "id": "gen-1793796359-biKsS43ySFG7E1cJRTrY",
+        "object": "chat.completion",
+        "created": 1793796359,
+        "model": "openai/gpt-6-sol",
+        "provider": "OpenAI",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "completed",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_06e941f9e48e4ac2a75d4a750f461f52",
+                  "function": {
+                    "name": "finish",
+                    "arguments": "{\"status\":\"completed\",\"claim\":\"Rescheduled Appointment/appt-pell-001 to 2026-04-08T15:00:00Z for patient pat-river-noah-pell; action applied.\"}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1755,
+          "completion_tokens": 57,
+          "total_tokens": 1812,
+          "cost": 0.0013243,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 1579,
+            "cache_write_tokens": 173,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0013243,
+            "upstream_inference_prompt_cost": 0.0007543,
+            "upstream_inference_completions_cost": 0.00057
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    }
+  ]
+}

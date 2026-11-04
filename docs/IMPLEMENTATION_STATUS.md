@@ -20,7 +20,7 @@
 
 ## Gate 3 — models
 
-- `NOT_MEASURED`. No key. Cost cap default 0. `run-models` without `--dry-run` exits 2 and does not open a provider socket.
+- `MEASURED` on 4 November 2026. 31 accepted OpenRouter trials, 0 rejected. Provider usage USD 0.5471084. Details in `docs/FRONTIER_MODEL_FINDINGS.md`.
 
 ## Gate 4 — dashboard
 

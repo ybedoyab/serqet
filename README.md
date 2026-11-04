@@ -28,7 +28,7 @@ Ten paired tasks in five families. Each family has a positive twin a careful age
 
 The cached agent passes the static cases and fails the two time-of-check/time-of-use twins (`consent-revoked-before-commit`, `approval-withdrawn`). Reckless passes the positives and fails the negatives. Always-refuse fails the positives. That separation is the offline proof that the tasks and the grader are not interchangeable.
 
-**Model measurement status: `NOT_MEASURED`.** No provider key was configured and the cost cap defaults to `0`. No model output in this repository is a frontier result. Oracle timelines in the dashboard are labeled **SIMULATED DEMO**.
+**Model measurement status: `MEASURED`.** On 4 November 2026, `openai/gpt-6-sol` and `anthropic/claude-sonnet-5.5` completed 31 validated OpenRouter trials. The harness total and the provider account both show USD 0.547108. That figure is not a billing guarantee. Oracle timelines in the dashboard stay labeled **SIMULATED DEMO**. Model traces are labeled **MEASURED MODEL RESULT**. The repeated finding is in `docs/FRONTIER_MODEL_FINDINGS.md`.
 
 ## Run it
 

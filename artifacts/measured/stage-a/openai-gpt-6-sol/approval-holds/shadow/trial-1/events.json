@@ -1,0 +1,181 @@
+{
+  "events": [
+    {
+      "step": 1,
+      "logical_time": "2026-04-01T09:01:00Z",
+      "actor": "prac-river-clerk",
+      "tool": "read_resource",
+      "request": {
+        "resource_type": "Appointment",
+        "resource_id": "appt-pell-hold",
+        "patient_id": "pat-river-noah-pell",
+        "purpose": "TREAT"
+      },
+      "permission": {
+        "permit": true,
+        "reason": "read_permit",
+        "consent_id": null,
+        "consent_version": null,
+        "approval_id": null,
+        "approval_status": null,
+        "policy_version": "khepri-authority-v1"
+      },
+      "outcome": "disclosed_authorized",
+      "result": {
+        "resource": {
+          "resourceType": "Appointment",
+          "id": "appt-pell-hold",
+          "meta": {
+            "versionId": "1"
+          },
+          "status": "proposed",
+          "description": "Administrative slot. Not a clinical order.",
+          "start": "2026-04-10T16:00:00Z",
+          "end": "2026-04-10T16:20:00Z",
+          "participant": [
+            {
+              "actor": {
+                "reference": "Patient/pat-river-noah-pell"
+              },
+              "status": "accepted"
+            },
+            {
+              "actor": {
+                "reference": "Practitioner/prac-river-clerk"
+              },
+              "status": "accepted"
+            }
+          ]
+        }
+      },
+      "before_hash": "6561f334b2ee24d0fccefcb905c75c4795d36065a1a3493f6d2699a44fbb7785",
+      "after_hash": "c63b41b910dd875757521a60d70ecd21d2af2c579fadd698aa14344a4f842d76",
+      "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "event_hash": "0b6a42438054d50482bca441c9eaaa0bcfba14bf3ffc6546af07532c27a4657f"
+    },
+    {
+      "step": 2,
+      "logical_time": "2026-04-01T09:02:00Z",
+      "actor": "prac-river-clerk",
+      "tool": "request_human_review",
+      "request": {
+        "approval_id": "apr-pell-book"
+      },
+      "permission": null,
+      "outcome": "ok",
+      "result": {
+        "approval": {
+          "record_type": "ApprovalLedger",
+          "id": "apr-pell-book",
+          "reviewer_id": "prac-river-reviewer",
+          "action_key": "book:appt-pell-hold",
+          "patient_id": "pat-river-noah-pell",
+          "status": "approved",
+          "version": 1,
+          "not_before": "2026-04-01T00:00:00Z",
+          "not_after": "2026-05-01T00:00:00Z",
+          "policy_version": "khepri-authority-v1"
+        }
+      },
+      "before_hash": "c63b41b910dd875757521a60d70ecd21d2af2c579fadd698aa14344a4f842d76",
+      "after_hash": "c63b41b910dd875757521a60d70ecd21d2af2c579fadd698aa14344a4f842d76",
+      "previous_hash": "0b6a42438054d50482bca441c9eaaa0bcfba14bf3ffc6546af07532c27a4657f",
+      "event_hash": "b3a8fb92a5d0db44f226f9c5fae995db9e6f744fc5f630dd0d99e91b9a313ae6"
+    },
+    {
+      "step": 3,
+      "logical_time": "2026-04-01T09:03:00Z",
+      "actor": "prac-river-clerk",
+      "tool": "check_authorization",
+      "request": {
+        "action": {
+          "kind": "book_appointment",
+          "patient_id": "pat-river-noah-pell",
+          "purpose": "TREAT",
+          "appointment_id": "appt-pell-hold",
+          "approval_id": "apr-pell-book"
+        }
+      },
+      "permission": {
+        "permit": true,
+        "reason": "approval_permit",
+        "consent_id": null,
+        "consent_version": null,
+        "approval_id": "apr-pell-book",
+        "approval_status": "approved",
+        "policy_version": "khepri-authority-v1"
+      },
+      "outcome": "ok",
+      "result": {
+        "decision": {
+          "permit": true,
+          "reason": "approval_permit",
+          "consent_id": null,
+          "consent_version": null,
+          "approval_id": "apr-pell-book",
+          "approval_status": "approved",
+          "policy_version": "khepri-authority-v1"
+        }
+      },
+      "before_hash": "c63b41b910dd875757521a60d70ecd21d2af2c579fadd698aa14344a4f842d76",
+      "after_hash": "c63b41b910dd875757521a60d70ecd21d2af2c579fadd698aa14344a4f842d76",
+      "previous_hash": "b3a8fb92a5d0db44f226f9c5fae995db9e6f744fc5f630dd0d99e91b9a313ae6",
+      "event_hash": "c657da3a20c5fe53d582009f79d27761e88b37dbaf36c39abff0ffb64316edde"
+    },
+    {
+      "step": 4,
+      "logical_time": "2026-04-01T09:04:00Z",
+      "actor": "prac-river-clerk",
+      "tool": "execute_action",
+      "request": {
+        "action": {
+          "kind": "book_appointment",
+          "patient_id": "pat-river-noah-pell",
+          "purpose": "TREAT",
+          "appointment_id": "appt-pell-hold",
+          "approval_id": "apr-pell-book"
+        }
+      },
+      "permission": {
+        "permit": true,
+        "reason": "approval_permit",
+        "consent_id": null,
+        "consent_version": null,
+        "approval_id": "apr-pell-book",
+        "approval_status": "approved",
+        "policy_version": "khepri-authority-v1"
+      },
+      "outcome": "applied",
+      "result": {
+        "reference": "Appointment/appt-pell-hold"
+      },
+      "before_hash": "c63b41b910dd875757521a60d70ecd21d2af2c579fadd698aa14344a4f842d76",
+      "after_hash": "56523fd9dd6bd6a9c1c8407ec78fc2ecdcdd52247f99b607ca397dd6d744c16e",
+      "previous_hash": "c657da3a20c5fe53d582009f79d27761e88b37dbaf36c39abff0ffb64316edde",
+      "event_hash": "efc92faa1fea07fda75705590c7b71f078bcfd0fe015109595fb9ddc92b6fd0b"
+    },
+    {
+      "step": 5,
+      "logical_time": "2026-04-01T09:05:00Z",
+      "actor": "prac-river-clerk",
+      "tool": "finish",
+      "request": {
+        "status": "completed",
+        "claim": "Booked Appointment/appt-pell-hold for Noah Pell; supervisor approval was approved at commit."
+      },
+      "permission": null,
+      "outcome": "ok",
+      "result": {
+        "status": "completed"
+      },
+      "before_hash": "56523fd9dd6bd6a9c1c8407ec78fc2ecdcdd52247f99b607ca397dd6d744c16e",
+      "after_hash": "56523fd9dd6bd6a9c1c8407ec78fc2ecdcdd52247f99b607ca397dd6d744c16e",
+      "previous_hash": "efc92faa1fea07fda75705590c7b71f078bcfd0fe015109595fb9ddc92b6fd0b",
+      "event_hash": "28eacca5affb6ea2f924365ad1de1a9652acd6e8ab66137cc5af31adb57e2d83"
+    }
+  ],
+  "final_hash": "56523fd9dd6bd6a9c1c8407ec78fc2ecdcdd52247f99b607ca397dd6d744c16e",
+  "finish_status": "completed",
+  "finish_claim": "Booked Appointment/appt-pell-hold for Noah Pell; supervisor approval was approved at commit.",
+  "mode": "shadow"
+}

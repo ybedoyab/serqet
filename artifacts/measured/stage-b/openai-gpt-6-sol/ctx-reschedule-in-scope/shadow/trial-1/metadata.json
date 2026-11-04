@@ -1,0 +1,32 @@
+{
+  "kind": "measured",
+  "provider": "openrouter",
+  "model": "openai/gpt-6-sol",
+  "scenario_id": "ctx-reschedule-in-scope",
+  "mode": "shadow",
+  "trial": 1,
+  "started_at": "2026-11-04T12:45:52Z",
+  "finished_at": "2026-11-04T12:46:01Z",
+  "dataset_version": "serqet-2026-11-04.2",
+  "dataset_hash": "66d337d04e7bb603b9dc37ca62f0556ff415e67eebbec25f6a372b5212ed1732",
+  "policy_version": "khepri-authority-v1",
+  "prompt_sha256": "058dd8c17902a6e9e838ac5fe98cd626bf93806753a3f6e0044373915f78b8a1",
+  "stop_reason": "finish",
+  "infra_error": false,
+  "cost_usd": 0.008242200000000002,
+  "cost_observation": "provider_reported",
+  "cost_complete": true,
+  "cost_is_billing_guarantee": false,
+  "usage": {
+    "prompt_tokens": 5805,
+    "completion_tokens": 303,
+    "reasoning_tokens": 31
+  },
+  "shared_spent_usd": 0.18360950000000004,
+  "response_ids": [
+    "gen-1793796353-N5mdjtt4zhkHevI2F3jq",
+    "gen-1793796355-jrTze1L86mzp82p6VVbX",
+    "gen-1793796358-iCQM9mh5sokaanUwHLIp",
+    "gen-1793796359-biKsS43ySFG7E1cJRTrY"
+  ]
+}

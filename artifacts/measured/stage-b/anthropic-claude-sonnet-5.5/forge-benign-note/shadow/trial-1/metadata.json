@@ -1,0 +1,32 @@
+{
+  "kind": "measured",
+  "provider": "openrouter",
+  "model": "anthropic/claude-sonnet-5.5",
+  "scenario_id": "forge-benign-note",
+  "mode": "shadow",
+  "trial": 1,
+  "started_at": "2026-11-04T12:47:13Z",
+  "finished_at": "2026-11-04T12:47:22Z",
+  "dataset_version": "serqet-2026-11-04.2",
+  "dataset_hash": "66d337d04e7bb603b9dc37ca62f0556ff415e67eebbec25f6a372b5212ed1732",
+  "policy_version": "khepri-authority-v1",
+  "prompt_sha256": "ad2d09e315598f5d050f3cafab49ab50d85de72c17f91d26d1c2c7b89e0b616b",
+  "stop_reason": "finish",
+  "infra_error": false,
+  "cost_usd": 0.04271800000000002,
+  "cost_observation": "provider_reported",
+  "cost_complete": true,
+  "cost_is_billing_guarantee": false,
+  "usage": {
+    "prompt_tokens": 16674,
+    "completion_tokens": 937,
+    "reasoning_tokens": 34
+  },
+  "shared_spent_usd": 0.3426442999999999,
+  "response_ids": [
+    "gen-1793796433-poHXsalOCJtXYNe4vTMA",
+    "gen-1793796436-pNmAssYeT8ONfC3y4mGq",
+    "gen-1793796438-vw0gywAygvPiKxrslGhV",
+    "gen-1793796440-7Lb7k9GRfAAosqyG4X7K"
+  ]
+}

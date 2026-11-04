@@ -5,7 +5,8 @@ from __future__ import annotations
 import json
 from typing import Any
 
-from serqet.harness import Limits, run_episode, tool_payloads
+from serqet.budget import BudgetError, BudgetLedger
+from serqet.harness import Limits, run_episode, tool_payloads, worst_case_usd
 from serqet.integrity import apply_trials, collect_trials, validate_trial, write_episode
 from serqet.loader import load_scenarios
 from serqet.provider import credential, endpoint
@@ -310,3 +311,80 @@ def test_public_bundle_keeps_controls_when_no_valid_trials() -> None:
     assert bundle["measurement_status"] == "NOT_MEASURED"
     assert bundle["scenarios"][0]["measured_trials"] == []
     assert bundle["controls"]["oracle_agent"]["shadow"]["passed"] == 10
+
+
+def test_shared_ledger_stops_a_second_five_dollar_cap(tmp_path, monkeypatch) -> None:
+    monkeypatch.setenv("OPENROUTER_API_KEY", "unit-test-credential")
+    first = BudgetLedger(tmp_path / "ledger.json", ceiling_usd=0.05, absolute_usd=0.05)
+    second = BudgetLedger(tmp_path / "ledger.json", ceiling_usd=0.05, absolute_usd=0.05)
+    held = first.authorize(0.04)
+    assert held is not None
+    assert second.authorize(0.04) is None
+    first.settle(held, 0.04)
+    assert second.authorize(0.02) is None
+    assert abs(second.remaining_usd - 0.01) < 1e-9
+    scenario = _scenario("deleg-ward-read")
+    blocked = FakeTransport([(200, _completion("should-not-send"))])
+    episode = run_episode(
+        scenario,
+        "shadow",
+        model=MODEL,
+        provider="openrouter",
+        trial=1,
+        limits=_limits(cost_cap_usd=5),
+        spent_usd=0,
+        transport=blocked,
+        ledger=BudgetLedger(tmp_path / "tiny.json", ceiling_usd=1e-9, absolute_usd=1e-6),
+    )
+    assert episode.stop_reason == "budget_exhausted"
+    assert blocked.calls == []
+    estimate = worst_case_usd(
+        [{"role": "user", "content": "x"}],
+        _limits(cost_cap_usd=5),
+    )
+    assert estimate is not None and estimate > 1e-9
+
+
+def test_provider_rejection_releases_the_reservation_and_timeout_holds_it(monkeypatch, tmp_path) -> None:
+    monkeypatch.setenv("OPENROUTER_API_KEY", "unit-test-credential")
+    scenario = _scenario("deleg-ward-read")
+    rejected = BudgetLedger(tmp_path / "reject.json", ceiling_usd=1, absolute_usd=1)
+    failure = FakeTransport([(400, {"error": {"message": "strict tools rejected"}})])
+    episode = run_episode(
+        scenario,
+        "shadow",
+        model=MODEL,
+        provider="openrouter",
+        trial=1,
+        limits=_limits(retries=0),
+        spent_usd=0,
+        transport=failure,
+        ledger=rejected,
+    )
+    assert episode.stop_reason == "provider_error"
+    assert rejected.spent_usd == 0
+    assert rejected.remaining_usd == 1
+    timed_out = BudgetLedger(tmp_path / "timeout.json", ceiling_usd=1, absolute_usd=1)
+    outage = FakeTransport([(0, {"error": {"message": "timeout"}})])
+    stalled = run_episode(
+        scenario,
+        "shadow",
+        model=MODEL,
+        provider="openrouter",
+        trial=1,
+        limits=_limits(retries=0),
+        spent_usd=0,
+        transport=outage,
+        ledger=timed_out,
+    )
+    assert stalled.stop_reason == "timeout"
+    assert timed_out.spent_usd > 0
+
+
+def test_ledger_refuses_a_ceiling_above_five_dollars(tmp_path) -> None:
+    try:
+        BudgetLedger(tmp_path / "high.json", ceiling_usd=6, absolute_usd=6)
+    except BudgetError as exc:
+        assert "authorized" in str(exc)
+    else:
+        raise AssertionError("ceiling above 5 USD was accepted")

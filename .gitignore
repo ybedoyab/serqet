@@ -17,6 +17,7 @@ test-results/
 blob-report/
 *.tsbuildinfo
 artifacts/dry-run.json
+artifacts/budget/
 coverage/
 *.log
 .DS_Store

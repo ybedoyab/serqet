@@ -19,8 +19,9 @@ export default async function BenchmarksPage({
       <p className="eyebrow">Tasks</p>
       <h1>Ten workflows, five twins</h1>
       <p>
-        Every card is model status <strong>not measured</strong>. Open one to
-        see the contract and the simulated oracle timeline.
+        A card marked <strong>measured model result</strong> has at least one
+        validated provider trial. Open a task for that trace. The stepped
+        timeline labeled simulated demo is still the oracle replay, not the model.
       </p>
       <form className="filters" method="get">
         <label>

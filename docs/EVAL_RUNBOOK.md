@@ -35,7 +35,7 @@ Defaults: `--max-turns 8`, `--max-output-tokens 700`, one retry on 408, 409, 429
 
 ## Staged protocol
 
-No stage below was run against a paid provider in the harness commit. Do not start one without choosing a numeric cap you are willing to spend.
+The 4 November 2026 run used a shared ledger at `artifacts/budget/ledger.json` with a harness ceiling of USD 4.50 inside a provider key limit of USD 5. Separate `--cost-cap-usd` values cannot each spend USD 5. That ledger is not a billing guarantee. The completed matrix is `docs/FRONTIER_MODEL_FINDINGS.md`. The templates below are the commands that were used, with the caps passed to each process.
 
 ### Stage A — pilot
 

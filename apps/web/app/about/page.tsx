@@ -15,7 +15,8 @@ export default function AboutPage() {
         test FHIR actions or approval mechanics. SERQET asks a narrower
         question: when authority changes in the middle of a legitimate
         workflow, does the agent notice before the side effect? That claim
-        stays a hypothesis until models are measured.
+        is now measured for two OpenRouter models. The traces and the limits are
+        in the repository findings.
       </p>
       <h2>Earlier work by the author</h2>
       <p>

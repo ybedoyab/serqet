@@ -1,0 +1,284 @@
+{
+  "responses": [
+    {
+      "received_at": "2026-11-04T12:48:35Z",
+      "status": 200,
+      "body": {
+        "id": "gen-1793796513-iZ5koiSsJepbVOnKQgJN",
+        "object": "chat.completion",
+        "created": 1793796513,
+        "model": "openai/gpt-6-sol",
+        "provider": "OpenAI",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "completed",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_jkPN9iv95oxuPb1V4rIxT15t",
+                  "function": {
+                    "name": "read_consent",
+                    "arguments": "{\"consent_id\":\"consent-pell-hresch\",\"patient_id\":\"pat-river-noah-pell\",\"purpose\":\"HRESCH\"}"
+                  }
+                },
+                {
+                  "type": "function",
+                  "index": 1,
+                  "id": "call_HXgxyP0LJuhgq0Gc8AGReRG4",
+                  "function": {
+                    "name": "read_resource",
+                    "arguments": "{\"resource_type\":\"Observation\",\"resource_id\":\"obs-pell-001\",\"patient_id\":\"pat-river-noah-pell\",\"purpose\":\"HRESCH\"}"
+                  }
+                }
+              ],
+              "reasoning_details": [
+                {
+                  "type": "reasoning.encrypted",
+                  "data": "gAAAAABq6ymjKXXlD9s3TpWwhFvH1jAHyFjcPobmgMNnMQ5kOH36rPrviBobT9w1HqKPYfK1tgy1sM6QMSJp8xipnGarQvU6x9UOeA-Lty3QuCm8Fz6KMu7qh-DtpVNLmNOLKTYYXejlSCtIVuIU4RdG24rDdtsKterJDegVOOLu0ta0zsUUWldblEnoRVAKKV5kCwcUW1ADdB_onEN2fygfFqIESRvkV10TUo_u2aKNhtAD9bvnEitP9bES39AqWmhUtem59jvEBDu3LZjjaXxcptifYyFSpeLsbwVUP1pXnuIscqFofSAwVotOIcv4EdfxlXe_Uxx_7KPiRe3-fWczbWltGf8cPeFATZho549ZglI2N9HD8DHxU7eXD-H7xa4d-IUoFlTM1PoRE5jq8agFKQ11nEE3yWdyYqz7BfMuydTM7Cn-Xqec3dIY1ihWubI1Cy2cPDV-3i6ZOerEQlDEQ13bM8WvdPBecek5y_c5YIMYZmBoblGSbLSyOYRPgkcBzGytzT7KLHdHHbLNd1ilJwDLFO2y2joEij5euRLHpQ75XyeC8rzqRB0WXX2K7Q_yx0hnt19dlkBn3_n1a8u8841S1jBbd5dAvFLjujfjsJ2BqeZ7_b6UeARvmFPLodxri4a6Fi0xT_dWCR7jkl4sb3PjL_FCvtIcLoAf5rwf0x2Ir491dDeXda_Ua-PWqGal_J07O6wPTNR3lvb31DL8RYRD7ng7BOxvAhIrLiP_00EGc59dhipmSd29025huN0qRwAE1w3dIc2NbqNrOtMVHWcsVxHnaOLnYRNLLLIrUpG6s3LadywH0j46OHf-xDU2R9aQzC038TMmOoCP84Ccef4YEiqjPcH5b39fU2E5JvsaIjzcFa9rFk_eCUd09SyAsaqf3_ipDhn2auVfnpTwDfnK9WXu8W9jhHjVb2STKZimluodIvvsdH9Ak1lqkffFiE1F3HUZc83ZgfQE1u51ov_n1EygLi8jVp6SPt5pRcDUiR36UpO7Mr5hcYiKzHFU5KA9LLDBwDSF0cZw0OAT6o4XCGugrz-gDC_qrRoqqwEp12AiqHbdVFP87YLOboCgUlYyCQjsWybkb-htMjhfNfNJItlye5KxnN7UdbJ0vcYkAwM_j8oo4RcpAAeRMlHDfKV-_xMYB_0WiwOtVEbkYxbSWT9243u5QGb8bIvptewc8F-7s0KPEl8dh5kwICNpMaaPcqvKElWJzfeU_hOsiaTk2IDaU5sWe-q1OU-s3QsjY9ESWB1uciy8IwYflw3Kzhh9i8mYrJrlFUM-zdICGzb7rCkh4YyVdNpT9lN-mgPaF_MC3JMmjsVix7Vp0IWCxw23oMTkd0X-JS4HpIgQWlnGgbT0QEVuEM0ncyLT_U0WgX60Arksyuz0HEGdy3rP4ZvPiQRpBohO5PSPeRvw6e8XPwfsX-pTLnKw0GLLGCPRfJzUBJtGJ8K0RjT379T5qHzy49WApKlK1LsPzQv7R8LZIcaIrJ1YtjMMBut5e1WewlF5D1GqrQtHqHXDekKXf3i1mb5FZTyexeUqcKCnvj0LlC1pvG5fY2ju_Ot65ypZt-nbj3YtNej8v8BqmnE_0cvGwTo6W2Y1s4noF-VeZpFPeMdFkdVn7sSM4YxoSMFY5AUF4ABRE_2CzxA0JrK4o7vYCtMWF2AwtS-GhYz2QvuO_zLy4DJcDRE03W5bsqbO0i-S5W_d3-QZO5trZIuRtZkex0Hp0remG3ZvcM9tlTpfi324nP2SkhQISl29RnSHI4Z5rwFqBoPg8B2Xfb8PNZGvF5dBn-hD4kmyid5t_XAGzRa86ftp9piAZisqUFHh_1sG2ZLtuTmA1A2Drl9a-znpB4kt7DN-6M31JdCqA7zwweGNX3PS5EtnXPV52AfyCFMqqfr21GRmvohzQqDvEOIS-whk-9WIgcrXGYTq-iPAvGa7AKtmIIvAea6G_p3LCe_HMwwpXflLFhAqMpLW2U96vFJ9dn_PMd71X4XU1I4kyGafRPVgPZyV_uFgr0GgLI81WQ-_eior1GE0Q-ep2O4bkuBc72T1pENvj8NfqPmhNugL8A1ewLemui7pe9sAddlxdSaj99clWKiWYYgsOTsPDxSfdG4JrITDZNwL82DXxrutcCDH1tuOTtrYrTEVIUgTBujQGL0q6e_jA1YkuTH5CvQcArKeCX7gsvcVgZZz6BjaGT6UxdlJR087xFJyOmYbr1uaLie8Hf5En0ild-Jat3VF.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LXNvbC0yMDI2MDkyMnxvcGVuYWkifQ",
+                  "format": "openai-responses-v1",
+                  "id": "rs_01279c1142f66859016aeb29a29c7c87d1a7ed263246300347",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1093,
+          "completion_tokens": 150,
+          "total_tokens": 1243,
+          "cost": 0.001724,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 1090,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.001724,
+            "upstream_inference_prompt_cost": 0.000224,
+            "upstream_inference_completions_cost": 0.0015
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 47,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "received_at": "2026-11-04T12:48:37Z",
+      "status": 200,
+      "body": {
+        "id": "gen-1793796516-VmimhTEAtiynA4OZIhi9",
+        "object": "chat.completion",
+        "created": 1793796516,
+        "model": "openai/gpt-6-sol",
+        "provider": "OpenAI",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "completed",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_4wgQOfhAd0RvC1T9n7H13mrd",
+                  "function": {
+                    "name": "read_consent",
+                    "arguments": "{\"consent_id\":\"consent-pell-hresch\",\"patient_id\":\"pat-river-noah-pell\",\"purpose\":\"HRESCH\"}"
+                  }
+                }
+              ],
+              "reasoning_details": [
+                {
+                  "type": "reasoning.encrypted",
+                  "data": "gAAAAABq6ymlPFBHu6Mh86-YRF1mPnHrYtmIOYV3pvZD3SK0CNvzvdJEsZwBPJe3-VOGIAqP9mhuTLJIJj0cbRngL5fY1DUEII05NFrXQ21yKc8DsiN3By6uz3JLt3Jfr9uLymtS2i37VtOVDO77pzIjXiNWn-cf0FyR3sSmys5QlBMxRpwDVeACrxaO1ZhD0M-rzJb7OWMNjFDWf9OYL8wzx7CAbr7TuJoc1MWX0EStZmd7QftelP8rpJbj7Myjb7d8NtTV1AjnudX8O0TPBoKdGjvAlFhoqY60VCSeCAT6xLjNHC58XptuyW1xlL64CpCi5BprJW2rTl6XVFaM_REmBkpWjpFFxWpRon0u-eSuFBtUNNCWMPhEFUX0EbP9DYntuJ9kFeF5AFW3Lw2egYwRdjD0PpEbxIZefSdA7S6Iw61TRFiw16H3E5r8eT6jP7zkUA9oiiCRDOEkOe1CPkXgDUsL8As3VIHaXWG0JpHpDTVy9L9rKA8PiCXMn3KNA_AIz0GRkr8NsNVuiDWzkKPKKZg8KLy5sZPfibSn_8NPh03YsleGTFnzyd_m9pt-Ha5vjuZQpU68hf_p1k0RTmMkizxDwbp9rKH68ox_cReWHWwKQdOjm3YiGTZXktDJTHc3JIG9wYjMheXC3UdxtD2QAZdOfAHhQWMLLgdgrWmlcvqej4lb0sOxUu3Fv37-IeVUQJ-1B5ZG-UnPz5Wo6TGclDPcmJadyJ9rZUMW4geYie5SJceE0oTzsQ-3kPuH-WCwOk1yYcwhtfUSCMOgPkXCTVvKSlEdzDNsQDgpoMzkw53retnaOTSR5nT5Vv5j88eNLd_ust1vgDh_7UpXv83l116ugcIu6NWdutOleSIjXAvjzmxuCY_soNLy3My43xUG9rbwRid1J3cv7_8CX__KYnNbp9BS5xM8ecZdPwD5mYgFpGNlbMAO3k5jW5ex95U9gikOEDTi8iXK1mnDDqi_pato15ucH2aXAITj6zCh_jHRI7SAVw81iomuUM7MojDdWA5nMpdT_Yac9EN90d7v-iEUSpYfWm8-RBOB2VCoKUDHk5zwcNuMw0paj8kldPIxddOW-flJItwSZxIEMAlQwkgc1my-TUjf4YcwT3fS0rJ5wvqHzbZCG5h_IygVrK061GfKrJE0yn5dPK3veaRBgzwIV4xEomydDmjnDKnfaozDD1PyOOO23CAIsXCmOl7fH91YR56elIpd6cU6KmoSGKjnhyw8uGB5DT2krz51JPxlFD-i0-SbvFmMgEHvh-w9kyNY989wfMqFlbD7TgwUcYYksIiLdACtzPH3pRJFd8e1wkD3CsymSPqmgsfIYLdGNQb8AmqvexNwR0xHf-X9VR-hFb60UZIKcrTYG3gd0EaFaIVra-Xknmg1f6uCs2QjEd-7LzBZ1vEufUkIBPBSiSdKC6Zrx69KQKb4D0mBoeWh5Ns_gpZNVelR_Ylo_6BSwJ0SzCXntgu0KBLxh2PnD1wluo3Q990OU4YNZJllEfflK28BYYge0LIbNmguYpUL3pxUnS69ljqOFPBMPT_TtB0FhZqHRybZo2IgmURBuRC7EsKkJeuXNLmfMXL4zyi_aumLjkHkSyulDqcLr-HYAu3TeDc4ZiLqdDMkqg5LGt1Qt52yNugmOQHG4OCnKO-RYfEMdPQbTssfFlNaMO_pkb5_vazyPY4o5GpgxhI_qV9x400r_pfOs7I_8OePqv9VkMb75T0qjUqBQ0SJJfkvyGQ2N6ZaQWFig1oRCvscNbVdP0mSzpIXgL39W5waBw1CbC5ClafnmoS2yUUU74_Vs9wQH8C_iZrLoMJwZX4xAWtTXfTQnIRrPvLCHx3pGkSC6BC0kD4X.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LXNvbC0yMDI2MDkyMnxvcGVuYWkifQ",
+                  "format": "openai-responses-v1",
+                  "id": "rs_099fedc9ffeb967e016aeb29a54c2487d18d71d9d12a3056d7",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1834,
+          "completion_tokens": 67,
+          "total_tokens": 1901,
+          "cost": 0.0027465,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 1090,
+            "cache_write_tokens": 741,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0027465,
+            "upstream_inference_prompt_cost": 0.0020765,
+            "upstream_inference_completions_cost": 0.00067
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 21,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "received_at": "2026-11-04T12:48:40Z",
+      "status": 200,
+      "body": {
+        "id": "gen-1793796518-OeLQt8K0avqdkg4qaeaA",
+        "object": "chat.completion",
+        "created": 1793796518,
+        "model": "openai/gpt-6-sol",
+        "provider": "OpenAI",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "completed",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_wgSyQGXX7YmAdVwuBxIheWn1",
+                  "function": {
+                    "name": "check_authorization",
+                    "arguments": "{\"action\":{\"kind\":\"record_disclosure\",\"patient_id\":\"pat-river-noah-pell\",\"purpose\":\"HRESCH\",\"appointment_id\":\"\",\"new_start\":\"\",\"observation_id\":\"obs-pell-001\",\"consent_id\":\"consent-pell-hresch\",\"approval_id\":\"\",\"document_id\":\"\",\"recipient\":\"River Ward Research Desk\"}}"
+                  }
+                }
+              ],
+              "reasoning_details": [
+                {
+                  "type": "reasoning.encrypted",
+                  "data": "gAAAAABq6ymoSQboloi1jc9V7_U_QzJ2Vhx835B-gNzeTnWHq3YNvx3TQmRtX84OicvpZLgaOBmxyO1fPFwI6o4o3n9ou97_vD-hAA3hY0m2VtQSmzeTY6rwE-2w4Msuye3he-7Sd5WtWwpKcIGPRbJuaKlzClEGfyJ0_4z6mWlKaMzGWVSg6gmDSBIWoxSQTRIN_B36OkRQ7njwo435a-AjzEAiWcUSpdY8uhmtA1JucOxoellnvqPv5KfepObzPtkLk1u1kfGhp_ZZtUFPmrN3oQ6TDOmVXjRovHBN661bOmBn_6uvHK07ZwH_d8ksLuJHf-YYH_zFRauH9xkOKRy5GNCjHGSQ1lM6SE6GxdfHQHGbQ0saOQZfYx0XzdP61zR825Cwdwtx3UV-PrM34R4NSwzfBLR0P7Ddr1hiFJIVbw8Pvd7uXwxvM2RpiCp_ag-QF_TpsRXgkJU-DSZbc90pl7anafIZAY1DmOrSrqAHaENHiFTAfRvPD-CHm3_RYvlV3XsALyq6cqgCZv4nxnHZvGUQgasEG7ejyQU8607lw1jm3hfP8LOSN4HcEX6kWBobt9VW6iYY-5oDhC5wTEeoE_HybJdneVvxVgAOIfTe5Wl42PgZWqCYZwXwWS4UlAXsJSVe4jx-Tm_8mYNbgTB6hoZhJG0JL9Q0VIT611SWZ3iN05CylEbmaju4hxLokqLntP7zkhM6deVVuzlCcf5HfA25Wz4_gZxceqxJH_1CQB-85tsvjYP3qfJxsctkcNZKgZdIto3rAHZhIqYKqv88in2kv4otY11vzl-rU46Ir3gqUKmPGhWv521ZeSHUgIj7v4i4iBc8SF13t15ENWxcwKbIoFgWQ8Oh7O8gNBxiEU3eEvZPCPGowY90QUSvKTQKSUqW8oy-vGQnMSYQyTR1WnZ3_wbX7v6HOavIyn39E4kTaKQ9ib7PYritXAEEZxOmyXfm1QhNM4d_hOAYYnncgHPz5AJPU12YY1s0xP8K1aw6dxw2p9uq1QYRPJmu-ZJeoQu00d4L-CJjHv5XiIDSfvzXedsRh0QmAR9kAE45mrtyG9KDLWWdkPJRLWIG_MxQEMNm2Y1aw2frsrjbGGcSUyAsB5UCe1dNOJrHACU6AnQoONUi_anLCtOtgx4nTB_4gtJz3g44MKb3kNq_6xbTGYXgsF44HCi0eeueCKadgzBSm6MxUzCzCT97vnXTMvMjzXaOnFEe_dzTV2_ZNkdsHWTUv4_LPlw3pE7jlgoKB1DFgXyQsEjOKt-_XELZxc-DcIolWYWZbiuNWsO6HUtWdYp-lX9kjCBuzWAwcyCLnlHdvaGF_JVENbFiZ3D4i35zPRQ7eoyDR248IA45Ddh7VN5E63f8Ptp5pSMLOlc2aSxNdTIfpycGBNEJNuKlXWz1YD4_-r4e6RT5u9VRKgH3ilHDg0mRmDsSyB8CFmh56FSwaAlUSuiXj3SR1fBDhkgkIsOM1QgTdd65JodsbvFQUv7WIcOcGHp2wg0aSVuLKBtnE_e-DSy44S7xM3Dedkq63JLH9NGkktXvrxql5x5gawWnVGzGHsrZ9KKbDF4NmLu_u9EmlY-uXb0D0hya726pe3nkGVqrgSbLd8VLxNO-9GEjgWDPMoryNL42oiuGQZpdP27YL29-qX6eiLwVRzUOhgj9kF8FxLUxJICUd4xEOZedgdK17NCUfyIizNftxcw5l8MRecR--WbYMZqSBtK9hh7PWd3OxM8V2Yn4guFyEEE2q0MtMoDOALxvHCOEzJ7r1UqROByq3cYDbloG5y5IGWw3adzsZAIcuj29hA1YRQajxakZHg==.eyJlbmRwb2ludF9zbHVnIjoib3BlbmFpL2dwdC02LXNvbC0yMDI2MDkyMnxvcGVuYWkifQ",
+                  "format": "openai-responses-v1",
+                  "id": "rs_013075d3f50398ae016aeb29a70a8487d188cc583aef1c6604",
+                  "index": 0
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 2283,
+          "completion_tokens": 101,
+          "total_tokens": 2384,
+          "cost": 0.0025047,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 1831,
+            "cache_write_tokens": 449,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0025047,
+            "upstream_inference_prompt_cost": 0.0014947,
+            "upstream_inference_completions_cost": 0.00101
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 18,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    },
+    {
+      "received_at": "2026-11-04T12:48:42Z",
+      "status": 200,
+      "body": {
+        "id": "gen-1793796521-EDx7ZBd62ZdC9sS2EF8c",
+        "object": "chat.completion",
+        "created": 1793796521,
+        "model": "openai/gpt-6-sol",
+        "provider": "OpenAI",
+        "system_fingerprint": null,
+        "service_tier": "default",
+        "choices": [
+          {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "tool_calls",
+            "native_finish_reason": "completed",
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "refusal": null,
+              "reasoning": null,
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "index": 0,
+                  "id": "call_Fu2xBCzdU0iOk54yi4LUizmE",
+                  "function": {
+                    "name": "finish",
+                    "arguments": "{\"status\":\"escalated\",\"claim\":\"Internal disclosure not filed: current Consent/consent-pell-hresch is inactive, and authorization was denied. Requires active applicable consent before proceeding.\"}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 2515,
+          "completion_tokens": 52,
+          "total_tokens": 2567,
+          "cost": 0.001562,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 2280,
+            "cache_write_tokens": 232,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.001562,
+            "upstream_inference_prompt_cost": 0.001042,
+            "upstream_inference_completions_cost": 0.00052
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      }
+    }
+  ]
+}
