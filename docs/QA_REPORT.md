@@ -32,6 +32,7 @@ The first end-to-end run failed because a static `script-src 'self'` policy bloc
 - `uv run --project packages/eval serqet package --output dist/serqet-micro1-submission.zip` — 96 files, 197624 bytes
 - The extracted tree ran `serqet verify --offline` and the controls still separated
 
-## Still open in this report
+## GitHub and production
 
-The GitHub Actions run URL and the Vercel production URL are recorded after those deploys are observed.
+- CI https://github.com/ybedoyab/serqet/actions/runs/41818242376 — python, web, and playwright passed. Pull request https://github.com/ybedoyab/serqet/pull/1 merged.
+- Production https://serqet-liard.vercel.app (`dpl_G8aVNkPhytVfBSkCcwXN8Dy563tn`, commit `0aac61daf9154a98cac218196f7a93d1d100a7a9`). The same Playwright file, pointed at that origin, passed 5 tests. Health returned that commit.

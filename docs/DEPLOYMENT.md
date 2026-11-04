@@ -19,4 +19,9 @@ cd apps/web && npm ci && npm run build && npm run start
 - Production branch: `main`
 - No required environment variables. Do not add provider keys to the project.
 
-The production URL, when one exists, is recorded in `docs/IMPLEMENTATION_STATUS.md` after a deploy is actually observed. A preview URL is not production.
+Production, observed 4 November 2026 from deployment `dpl_G8aVNkPhytVfBSkCcwXN8Dy563tn` (commit `0aac61daf9154a98cac218196f7a93d1d100a7a9`):
+
+- https://serqet-liard.vercel.app
+- https://serqet-ybedoyabs-projects.vercel.app
+
+Both aliases returned that commit from `/api/health`. Playwright passed against the first URL. A preview deployment URL is not the production address.
